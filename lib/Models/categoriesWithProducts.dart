@@ -1,5 +1,6 @@
 import 'package:twoo/Models/product.dart';
 
+// data model
 class CategoriesWithProducts {
   String id;
   String name;
@@ -9,7 +10,7 @@ class CategoriesWithProducts {
 
   CategoriesWithProducts(
       {this.id, this.image, this.main, this.name, this.products});
-
+// پارسر دیتای مربوط به این کلاس ک از سرور امده به ابجکت هایی از این کلاس 
   factory CategoriesWithProducts.parser(Map<String, dynamic> data) {
     return CategoriesWithProducts(
       id: data["id"],

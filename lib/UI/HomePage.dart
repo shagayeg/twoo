@@ -77,6 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   //   height: MediaQuery.of(context).size.height * 0.10,
                   //   width: MediaQuery.of(context).size.width * 0.99,
                   // ),
+                  
+                  
+                  
+                  
+                  // showing data
                   Container(
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
