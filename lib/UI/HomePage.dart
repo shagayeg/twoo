@@ -30,8 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
       });
       log(value.statusCode.toString());
       if (value.statusCode == 200) {
+        var body = jsonDecode(value.body);
         setState(() {
-          data = jsonDecode(value.body)["categoriesWithProducts"]
+          data = body["categoriesWithProducts"]
               .map<CategoriesWithProducts>(
                   (json) => CategoriesWithProducts.parser(json))
               .toList();
