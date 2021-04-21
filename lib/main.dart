@@ -241,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                       ),
                     ),
-                    Text('سوبر مارکت')
+                    Text('سوپر مارکت')
                   ],
                 ),
                 SizedBox(
@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                       ),
                     ),
-                    Text('مدو بوشاک')
+                    Text('مدو پوشاک')
                   ],
                 ),
                 SizedBox(
@@ -281,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                       ),
                     ),
-                    Text('خانه و آشیزخانه')
+                    Text('خانه و آشپزخانه')
                   ],
                 ),
                 SizedBox(
@@ -301,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                       ),
                     ),
-                    Text('دیجی بلاس')
+                    Text('دیجی پلاس')
                   ],
                 ),
                 SizedBox(
@@ -2157,7 +2157,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   Positioned(
                     left: 250,
                     top: 30,
-                    child: Text('1',style: TextStyle(color: Colors.blue,fontSize: 40),))
+                    child: Text('1',style: TextStyle(color: Colors.blue,fontSize: 40),)),
+                 
                 ],),
               )
         ])));
