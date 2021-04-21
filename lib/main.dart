@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twoo/UI/HomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -2164,3 +2166,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ])));
   }
 }
+=======
+>>>>>>> f469baf88dda441189ec9638ebe9a586c5f53fd0
