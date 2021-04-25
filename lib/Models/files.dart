@@ -1,7 +1,4 @@
-
-
 class Files {
-  
   String id;
   String discription;
   bool downlod;
@@ -9,7 +6,7 @@ class Files {
   bool isavailable;
   String name;
   String namenoext;
-  String  original;
+  String original;
   String originalname;
   bool playlist;
   String status;
@@ -17,7 +14,7 @@ class Files {
   String titel;
   String type;
   String url;
-  
+
   Files({
     this.id,
     this.discription,
@@ -34,11 +31,8 @@ class Files {
     this.titel,
     this.type,
     this.url,
-    
-    
-    
   });
-  factory Files.filesparser(Map<String,dynamic> data){
+  factory Files.filesparser(Map<String, dynamic> data) {
     return Files(
       id: data["id"],
       discription: data["discription"],
@@ -55,9 +49,6 @@ class Files {
       titel: data["titel"],
       type: data["type"],
       url: data["url"],
-      
     );
   }
 }
-
-  
