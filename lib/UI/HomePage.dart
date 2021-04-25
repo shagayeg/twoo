@@ -4,9 +4,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:twoo/API/HomePageAPI.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
+//import 'package:twoo/Models/files.dart';
+import 'package:twoo/Models/product.dart'; 
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({
+    Key key,
+    this.title,
+  }) : super(key: key);
 
   final String title;
 
@@ -17,6 +22,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _isReq = false;
   List<CategoriesWithProducts> data = new List();
+  List<Product> dataa= new List();
 
   @override
   void initState() {
@@ -35,6 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
           data = body["categoriesWithProducts"]
               .map<CategoriesWithProducts>(
                   (json) => CategoriesWithProducts.parser(json))
+              .toList();
+          dataa = body["product"]
+              .map<Product>((json) => Product.parser(json))
               .toList();
         });
       }
@@ -78,12 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   //   height: MediaQuery.of(context).size.height * 0.10,
                   //   width: MediaQuery.of(context).size.width * 0.99,
                   // ),
-                  
-                  
-                  
-                  
+
                   // showing data
-                  Container(
+                
+                  /////////////////////////////////////////////////////////////////////
+                    Container(
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.blue,
@@ -127,6 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+                  ////////////////////////////////////////////////////////////////////
+
                   SizedBox(
                     height: 5,
                   ),
@@ -468,123 +478,125 @@ class _MyHomePageState extends State<MyHomePage> {
                           SizedBox(
                             width: 15,
                           ),
-                          Container(
-                              margin: EdgeInsets.only(top: 30, bottom: 30),
-                              height: MediaQuery.of(context).size.height * 0.40,
-                              width: MediaQuery.of(context).size.width * 0.50,
-                              // color: Colors.yellowAccent,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                    top: 10,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.20,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.50,
-                                    child: Container(
-                                      child: Image.network(
-                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8qBprH-rh3OmJe4IORzi3JktQvJ5pRdD1A&usqp=CAU',
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 180,
-                                    left: 5,
-                                    height: 50,
-                                    width: 220,
-                                    child: Text(
-                                        '...کابل تبدیل به لایتینگ کین واله'),
-                                  ),
-                                  Positioned(
-                                    top: 250,
-                                    right: 10,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.13,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.03,
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 14, top: 3),
-                                      child: Text(
-                                        '26%',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius:
-                                            BorderRadius.circular(70.0),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                      top: 255,
-                                      left: 50,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.10,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.30,
-                                      child: Text(
-                                        '26,000',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700),
-                                      )),
-                                  Positioned(
-                                      top: 250,
-                                      left: 10,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.10,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.20,
-                                      child: Text(
-                                        'تومان',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w800),
-                                      )),
-                                  Positioned(
-                                      top: 285,
-                                      left: 50,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.10,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.30,
-                                      child: Text(
-                                        '32,700',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.grey),
-                                      )),
-                                  Positioned(
-                                      top: 294,
-                                      left: 50,
-                                      height: 1,
-                                      width: 50,
-                                      child: Container(
-                                        color: Colors.grey,
-                                      )),
-                                  Positioned(
-                                      top: 385,
-                                      left: 15,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.10,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.30,
-                                      child: Text(
-                                        '22:49:06',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.grey[400]),
-                                      )),
-                                ],
-                              )),
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                          //margin: EdgeInsets.only(top: 30, bottom: 30),
+                          // height: MediaQuery.of(context).size.height * 0.40,
+                          // width: MediaQuery.of(context).size.width * 0.50,
+                          // // color: Colors.yellowAccent,
+                          // decoration: BoxDecoration(
+                          //   color: Colors.white,
+                          //   borderRadius: BorderRadius.circular(10.0),
+                          // ),
+                          // child: Stack(
+                          //   children: [
+                          //     Positioned(
+                          //       top: 10,
+                          //       height: MediaQuery.of(context).size.height *
+                          //           0.20,
+                          //       width: MediaQuery.of(context).size.width *
+                          //           0.50,
+                          //       child: Container(
+                          //         child: Image.network(
+                          //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8qBprH-rh3OmJe4IORzi3JktQvJ5pRdD1A&usqp=CAU',
+                          //           fit: BoxFit.fill,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Positioned(
+                          //       top: 180,
+                          //       left: 5,
+                          //       height: 50,
+                          //       width: 220,
+                          //       child: Text(
+                          //           '...کابل تبدیل به لایتینگ کین واله'),
+                          //     ),
+                          //     Positioned(
+                          //       top: 250,
+                          //       right: 10,
+                          //       width: MediaQuery.of(context).size.width *
+                          //           0.13,
+                          //       height: MediaQuery.of(context).size.height *
+                          //           0.03,
+                          //       child: Container(
+                          //         padding:
+                          //             EdgeInsets.only(left: 14, top: 3),
+                          //         child: Text(
+                          //           '26%',
+                          //           style: TextStyle(color: Colors.white),
+                          //         ),
+                          //         decoration: BoxDecoration(
+                          //           color: Colors.red,
+                          //           borderRadius:
+                          //               BorderRadius.circular(70.0),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Positioned(
+                          //         top: 255,
+                          //         left: 50,
+                          //         height:
+                          //             MediaQuery.of(context).size.height *
+                          //                 0.10,
+                          //         width: MediaQuery.of(context).size.width *
+                          //             0.30,
+                          //         child: Text(
+                          //           '26,000',
+                          //           style: TextStyle(
+                          //               fontWeight: FontWeight.w700),
+                          //         )),
+                          //     Positioned(
+                          //         top: 250,
+                          //         left: 10,
+                          //         height:
+                          //             MediaQuery.of(context).size.height *
+                          //                 0.10,
+                          //         width: MediaQuery.of(context).size.width *
+                          //             0.20,
+                          //         child: Text(
+                          //           'تومان',
+                          //           style: TextStyle(
+                          //               fontWeight: FontWeight.w800),
+                          //         )),
+                          //     Positioned(
+                          //         top: 285,
+                          //         left: 50,
+                          //         height:
+                          //             MediaQuery.of(context).size.height *
+                          //                 0.10,
+                          //         width: MediaQuery.of(context).size.width *
+                          //             0.30,
+                          //         child: Text(
+                          //           '32,700',
+                          //           style: TextStyle(
+                          //               fontWeight: FontWeight.w400,
+                          //               color: Colors.grey),
+                          //         )),
+                          //     Positioned(
+                          //         top: 294,
+                          //         left: 50,
+                          //         height: 1,
+                          //         width: 50,
+                          //         child: Container(
+                          //           color: Colors.grey,
+                          //         )),
+                          //     Positioned(
+                          //         top: 385,
+                          //         left: 15,
+                          //         height:
+                          //             MediaQuery.of(context).size.height *
+                          //                 0.10,
+                          //         width: MediaQuery.of(context).size.width *
+                          //             0.30,
+                          //         child: Text(
+                          //           '22:49:06',
+                          //           style: TextStyle(
+                          //               fontWeight: FontWeight.w400,
+                          //               color: Colors.grey[400]),
+                          //         )),
+                          //   ],
+                          // )
+
                           SizedBox(
                             width: 15,
                           ),
@@ -2266,10 +2278,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Card(
                       semanticContainer: true,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Image.network(
-                        'https://dkstatics-public-2.digikala.com/digikala-products/110720339.jpg?x-oss-process=image/resize,h_1600/quality,q_80',
-                        fit: BoxFit.fill,
-                      ),
+
+                      // child: Image.network(
+                      //   'https://dkstatics-public-2.digikala.com/digikala-products/110720339.jpg?x-oss-process=image/resize,h_1600/quality,q_80',
+                      //   fit: BoxFit.fill,
+                      // ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -2480,36 +2493,121 @@ class _MyHomePageState extends State<MyHomePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 15),
                             )),
-                      ])),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.40,
-                    width: MediaQuery.of(context).size.width * 0.99,
-                    color: Colors.purple,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          left: 300,
-                          child: Container(
-                            child: Image.network(
-                                'https://dkstatics-public.digikala.com/digikala-products/111399466.jpg?x-oss-process=image/resize,h_1600/quality,q_80'),
-                            height: 100,
-                            width: 100,
-                            //color: Colors.pinkAccent,
+                      ])
+                      ),
+                      
+                    Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.pink,
+                    child: ListView.builder(
+                      itemCount: dataa.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        log(dataa.length.toString());
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          width: 200,
+                          color: Colors.green,
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "barcode : " + dataa[index].barcode ,
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "count : " + dataa[index].count.toString() ,
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "createdAt : " + dataa[index].createdAt.toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "createdAtConvert : " + dataa[index].createdAtConvert ,
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "createdAtMoment : " + dataa[index].createdAtMoment ,
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "authors.length : " +
+                                    dataa[index].authors.length.toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
-                        ),
-                        Positioned(
-                            left: 250,
-                            top: 30,
-                            child: Text(
-                              '1',
-                              style:
-                                  TextStyle(color: Colors.blue, fontSize: 40),
-                            ))
-                      ],
+                        );
+                      },
                     ),
+                  
                   )
-                ],
+                      
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                 /*Container(
+                   height: MediaQuery.of(context).size.height * 0.40,
+                   width: MediaQuery.of(context).size.width * 0.99,
+                    color: Colors.purple,
+                    child: 
+                    Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.blue,
+                    child: ListView.builder(
+                    itemCount: data.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                    return Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: 200,
+                    color: Colors.red,
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "image : " + data[index].image ?? "not set",
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "name : " + data[index].name ?? "not set",
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "main : " + data[index].main.toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "id : " + data[index].id ?? "not set",
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "products.length : " +
+                                    data[index].products.length.toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                */     
+                   
+                    
+                    
+                    ],
               ),
             ),
     );
