@@ -18,14 +18,14 @@ class Product {
     this.authors,
   });
   
-  factory Product.parser(Map<String, dynamic> dataa) {
+  factory Product.parser(Map<String, dynamic> data1) {
     return Product(
-      barcode: dataa["barcode"],
-      count: dataa["count"],
-      createdAt: dataa["created_at"],
-      createdAtConvert: dataa["created_at_convert"],
-      createdAtMoment: dataa["created_at_moment"],
-      authors: dataa["authors"]
+      barcode: data1["barcode"],
+      count: data1["count"],
+      createdAt: data1["created_at"],
+      createdAtConvert: data1["created_at_convert"],
+      createdAtMoment: data1["created_at_moment"],
+      authors: data1["authors"]
           .map<Author>((json) => Author.authorparser(json))
           .toList(),
     );

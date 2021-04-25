@@ -22,7 +22,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _isReq = false;
   List<CategoriesWithProducts> data = new List();
-  List<Product> dataa= new List();
+  List<Product> data1= new List();
 
   @override
   void initState() {
@@ -42,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
               .map<CategoriesWithProducts>(
                   (json) => CategoriesWithProducts.parser(json))
               .toList();
-          dataa = body["product"]
-              .map<Product>((json) => Product.parser(json))
-              .toList();
+          // dataa = body["product"]
+          //     .map<Product>((json) => Product.parser(json))
+          //     .toList();
         });
       }
     });
@@ -2501,10 +2501,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width,
                     color: Colors.pink,
                     child: ListView.builder(
-                      itemCount: dataa.length,
+                      itemCount: data1.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        log(dataa.length.toString());
+                        log(data1.length.toString());
                         return Container(
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: 200,
@@ -2515,28 +2515,28 @@ class _MyHomePageState extends State<MyHomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "barcode : " + dataa[index].barcode ,
+                                "barcode : " + data1[index].barcode ,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "count : " + dataa[index].count.toString() ,
+                                "count : " + data1[index].count.toString() ,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "createdAt : " + dataa[index].createdAt.toString(),
+                                "createdAt : " + data1[index].createdAt.toString(),
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "createdAtConvert : " + dataa[index].createdAtConvert ,
+                                "createdAtConvert : " + data1[index].createdAtConvert ,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "createdAtMoment : " + dataa[index].createdAtMoment ,
+                                "createdAtMoment : " + data1[index].createdAtMoment ,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
                                 "authors.length : " +
-                                    dataa[index].authors.length.toString(),
+                                    data1[index].authors.length.toString(),
                                 textAlign: TextAlign.center,
                               ),
                             ],
