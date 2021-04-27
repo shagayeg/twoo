@@ -1,4 +1,11 @@
+import 'dart:convert';
+
 import 'package:twoo/Models/author.dart';
+import 'package:twoo/Models/files.dart';
+import 'package:twoo/Models/place.dart';
+import 'package:twoo/Models/subject.dart';
+import 'package:twoo/Models/user.dart';
+import 'package:twoo/Models/variantvalue.dart';
 
 class Product {
   String barcode;
@@ -6,27 +13,50 @@ class Product {
   String createdAt;
   String createdAtConvert;
   String createdAtMoment;
-  List<Author>authors;
-  
+  List<Author> authors;
+  List<File> files;
+  List<User> user;
+  List<Subject> subjects;
+  List<Place> places;
+  List<Variantvalue> variantvalues;
 
-  Product({
-    this.barcode,
-    this.count,
-    this.createdAt,
-    this.createdAtConvert,
-    this.createdAtMoment,
-    this.authors,
-  });
-  
-  factory Product.parser(Map<String, dynamic> data1) {
+  Product(
+      {this.barcode,
+      this.count,
+      this.createdAt,
+      this.createdAtConvert,
+      this.createdAtMoment,
+      this.authors,
+      this.files,
+      this.user,
+      this.subjects,
+      this.places,
+      this.variantvalues});
+
+  factory Product.parser(Map<String, dynamic> productList) {
     return Product(
-      barcode: data1["barcode"],
-      count: data1["count"],
-      createdAt: data1["created_at"],
-      createdAtConvert: data1["created_at_convert"],
-      createdAtMoment: data1["created_at_moment"],
-      authors: data1["authors"]
+      barcode: productList["barcode"],
+      count: productList["count"],
+      createdAt: productList["created_at"],
+      createdAtConvert: productList["created_at_convert"],
+      createdAtMoment: productList["created_at_moment"],
+      authors: productList["authors"]
           .map<Author>((json) => Author.authorparser(json))
+          .toList(),
+      files: productList["files"]
+          .map<File>((json) => File.filesparser(json))
+          .toList(),
+      user: productList["user"]
+          .map<User>((json) => User.userparser(json))
+          .toList(),
+      subjects: productList["subjects"]
+          .map<Subject>((json) => Subject.subjectsparser(json))
+          .toList(),
+      places: productList["places"]
+          .map<Place>((json) => Place.placesparser(json))
+          .toList(),
+      variantvalues: productList["variantvalues"]
+          .map<Variantvalue>((json) => Variantvalue.variantvalueparser(json))
           .toList(),
     );
   }

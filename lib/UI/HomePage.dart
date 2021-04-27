@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:twoo/API/HomePageAPI.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
 //import 'package:twoo/Models/files.dart';
-import 'package:twoo/Models/product.dart'; 
+import 'package:twoo/Models/product.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -22,7 +22,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _isReq = false;
   List<CategoriesWithProducts> data = new List();
-  List<Product> data1= new List();
+  List<Product> productList = new List();
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _isReq = false;
       });
-      log(value.statusCode.toString());
+     // log(value.statusCode.toString());
       if (value.statusCode == 200) {
         var body = jsonDecode(value.body);
         setState(() {
@@ -42,10 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
               .map<CategoriesWithProducts>(
                   (json) => CategoriesWithProducts.parser(json))
               .toList();
-          // dataa = body["product"]
-          //     .map<Product>((json) => Product.parser(json))
-          //     .toList();
+          productList = body["products"]
+                .map<Product>((json) => Product.parser(json))
+                .toList();
+          
         });
+         
+
       }
     });
   }
@@ -89,9 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   // ),
 
                   // showing data
-                
+
                   /////////////////////////////////////////////////////////////////////
-                    Container(
+                  Container(
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.blue,
@@ -99,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemCount: data.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
+                      //  log(data.length.toString());
                         return Container(
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: 200,
@@ -2493,50 +2497,52 @@ class _MyHomePageState extends State<MyHomePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 15),
                             )),
-                      ])
-                      ),
-                      
-                    Container(
+                      ])),
+
+                  Container(
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.pink,
                     child: ListView.builder(
-                      itemCount: data1.length,
+                      itemCount:1, //productList.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        log(data1.length.toString());
+                       log(productList.length.toString());
                         return Container(
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: 200,
                           color: Colors.green,
                           margin: EdgeInsets.symmetric(horizontal: 12),
-                          child:Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "barcode : " + data1[index].barcode ,
+                                "barcode : " + productList[index].barcode,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "count : " + data1[index].count.toString() ,
+                                "count : " + productList[index].count.toString(),
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "createdAt : " + data1[index].createdAt.toString(),
+                                "createdAt : " +
+                                    productList[index].createdAt.toString(),
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "createdAtConvert : " + data1[index].createdAtConvert ,
+                                "createdAtConvert : " +
+                                    productList[index].createdAtConvert,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "createdAtMoment : " + data1[index].createdAtMoment ,
+                                "createdAtMoment : " +
+                                    productList[index].createdAtMoment,
                                 textAlign: TextAlign.center,
                               ),
                               Text(
                                 "authors.length : " +
-                                    data1[index].authors.length.toString(),
+                                    productList[index].authors.length.toString(),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -2544,17 +2550,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-                  
                   )
-                      
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                 /*Container(
+
+                  /*Container(
                    height: MediaQuery.of(context).size.height * 0.40,
                    width: MediaQuery.of(context).size.width * 0.99,
                     color: Colors.purple,
@@ -2603,11 +2601,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
-                */     
-                   
-                    
-                    
-                    ],
+                */
+                ],
               ),
             ),
     );
