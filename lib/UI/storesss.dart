@@ -35,7 +35,7 @@ class _Storesss extends State<Storesss>{
                 margin: EdgeInsets.symmetric(horizontal: 2),
                 color: Colors.green,
                 child: ListView.builder(
-                  itemCount: sto.store.length,
+                  itemCount: 5,
                   itemBuilder: (context,index){
                     return Card(
                    

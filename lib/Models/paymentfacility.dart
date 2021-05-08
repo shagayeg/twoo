@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class Paymentfacility{
   String terminalid;
   String apikey;
@@ -12,6 +14,7 @@ class Paymentfacility{
     
   });
   factory Paymentfacility.parser(Map<String, dynamic> data){
+    log(data.toString());
     return Paymentfacility(
       apikey: data["apikey"],
       internetterminalpassword: data["internetterminalpassword"],

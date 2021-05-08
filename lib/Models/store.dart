@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:twoo/Models/delivery.dart';
 import 'package:twoo/Models/domains.dart';
 import 'package:twoo/Models/homepage.dart';
@@ -26,17 +28,17 @@ class Store {
   String email;
   int enamadmetaid;
   List<String> metakeyword;
-  List<Delivery> delivery;
+  Delivery delivery;
   List<Domains> domains;
   List<Homepage> homepage;
   List<Instagramauth> instagramauth;
-  List<Irankish> irankish;
-  List<Mellat> mellat;
-  List<Owner> owner;
-  List<Payment> payment;
-  List<Paymentfacility> paymentfacility;
-  List<Socials> socials;
-  List<State> state;
+  Irankish irankish;
+  Mellat mellat;
+  Owner owner;
+  Payment payment;
+  Paymentfacility paymentfacility;
+  Socials socials;
+  State state;
 
   Store({
     this.createdat,
@@ -68,6 +70,7 @@ class Store {
   });
 
   factory Store.parser(Map<String, dynamic> data3) {
+    log(data3["stats"].toString() + " : vsldjhnjvnfsjcvn");
     return Store(
       acceptablecustomerregisterinfo: data3["acceptablecustomerregisterinfo"],
       address: data3["address"],
@@ -84,11 +87,7 @@ class Store {
       email: data3["email"],
       enamadmetaid: data3["enamadmetaid"],
       metakeyword: data3["metakeyword"],
-      delivery: data3["delivery"] == null
-          ? []
-          : data3["delivery"]
-              .map<Delivery>((json) => Delivery.parser(json))
-              .toList(),
+      delivery: Delivery.parser(data3["delivery"]),
       domains: data3["domains"] == null
           ? []
           : data3["domains"]
@@ -104,35 +103,13 @@ class Store {
           : data3["instagramauth"]
               .map<Instagramauth>((json) => Instagramauth.parser(json))
               .toList(),
-      irankish: data3["irankish"] == null
-          ? []
-          : data3["irankish"]
-              .map<Irankish>((json) => Irankish.parser(json))
-              .toList(),
-      mellat: data3["mellat"] == null
-          ? []
-          : data3["mellat"].map<Mellat>((json) => Mellat.parser(json)).toList(),
-      owner: data3["owner"] == null
-          ? []
-          : data3["owner"].map<Owner>((json) => Owner.parser(json)).toList(),
-      payment: data3["payment"] == null
-          ? []
-          : data3["payment"]
-              .map<Payment>((json) => Payment.parser(json))
-              .toList(),
-      paymentfacility: data3["paymentfacility"] == null
-          ? []
-          : data3["paymentfacility"]
-              .map<Paymentfacility>((json) => Paymentfacility.parser(json))
-              .toList(),
-      socials: data3["socials"] == null
-          ? []
-          : data3["socials"]
-              .map<Socials>((json) => Socials.parser(json))
-              .toList(),
-      state: data3["state"] == null
-          ? []
-          : data3["state"].map<State>((json) => State.parser(json)).toList(),
+      irankish: Irankish.parser(data3["irankish"]),
+      mellat: Mellat.parser(data3["mellat"]),
+      owner: Owner.parser(data3["owner"]),
+      payment: Payment.parser(data3["payment"]),
+      paymentfacility: Paymentfacility.parser(data3["payment_facility"]),
+      socials: Socials.parser(data3["socials"]),
+      state: State.parser(data3["stats"]),
     );
   }
 }

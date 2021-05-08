@@ -3,10 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:twoo/API/HomePageAPI.dart';
-import 'package:twoo/Models/author.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
-// import 'package:twoo/Models/files.dart';
-import 'package:twoo/Models/product.dart';
 import 'package:twoo/Models/store.dart';
 import 'package:twoo/Models/stores.dart';
 import 'package:twoo/UI/namecate.dart';
@@ -29,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<CategoriesWithProducts> data = new List();
   // List<Product> productList = new List();
   // List<Author> data1 = new List();
-  List<Stores> data2 = new List();
+  List<Stores> storesList = new List();
   List<Store> data3 = new List();
 
   get index => null;
@@ -53,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   (json) => CategoriesWithProducts.parser(json))
               .toList();
 
-          data2 = body["stores"]
+          storesList = body["stores"]
               .map<Stores>((json) => Stores.parser(json))
               .toList();
         });
@@ -102,51 +99,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   // showing data
 
                   /////////////////////////////////////////////////////////////////////
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.blue,
-                    child: ListView.builder(
-                      itemCount: data.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        //  log(data.length.toString());
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.3,
-                          width: 200,
-                          color: Colors.red,
-                          margin: EdgeInsets.symmetric(horizontal: 12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "image : " + data[index].image ?? "not set",
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "name : " + data[index].name ?? "not set",
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "main : " + data[index].main.toString(),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "id : " + data[index].id ?? "not set",
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "products.length : " +
-                                    data[index].products.length.toString(),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // Container(
+                  //   height: MediaQuery.of(context).size.height * 0.3,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   color: Colors.blue,
+                  //   child: ListView.builder(
+                  //     itemCount: data.length,
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemBuilder: (context, index) {
+                  //       //  log(data.length.toString());
+                  //       return Container(
+                  //         height: MediaQuery.of(context).size.height * 0.3,
+                  //         width: 200,
+                  //         color: Colors.red,
+                  //         margin: EdgeInsets.symmetric(horizontal: 12),
+                  //         child: Column(
+                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             Text(
+                  //               "image : " + data[index].image ?? "not set",
+                  //               textAlign: TextAlign.center,
+                  //             ),
+                  //             Text(
+                  //               "name : " + data[index].name ?? "not set",
+                  //               textAlign: TextAlign.center,
+                  //             ),
+                  //             Text(
+                  //               "main : " + data[index].main.toString(),
+                  //               textAlign: TextAlign.center,
+                  //             ),
+                  //             Text(
+                  //               "id : " + data[index].id ?? "not set",
+                  //               textAlign: TextAlign.center,
+                  //             ),
+                  //             Text(
+                  //               "products.length : " +
+                  //                   data[index].products.length.toString(),
+                  //               textAlign: TextAlign.center,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
                   ////////////////////////////////////////////////////////////////////
 
                   SizedBox(
@@ -317,17 +314,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width * 0.99,
                     color: Colors.amber,
                     child: ListView.builder(
-                        itemCount: data2.length,
+                      scrollDirection: Axis.horizontal,
+                        itemCount: storesList.length,
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: (){
-                               setState(() {});
-                            Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => new Storesss(
-                                          sto: data2[index],
-                                        )));
+                            onTap: () {
+                              setState(() {});
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => new Storesss(
+                                            sto: storesList[index],
+                                          )));
                             },
                             child: Column(
                               children: [
@@ -344,7 +342,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                Text(data[index].name)
+                                Text(storesList[index].domain)
                               ],
                             ),
                           );
