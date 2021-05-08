@@ -19,9 +19,12 @@ class CategoriesWithProducts {
       image: data["image"],
       main: data["main"],
       name: data["name"],
-      products: data["products"]
+     products :data ["products"]==null ?[]:
+       data["products"]
           .map<Product>((json) => Product.parser(json))
           .toList(),
     );
   }
+
+  get length => null;
 }

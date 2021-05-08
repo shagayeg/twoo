@@ -11,7 +11,7 @@ class Mainnews {
   String slug;
   String subtitle;
   String desc;
-  List<Image>image;
+  List<Image> image;
 
   Mainnews({
     this.name,
@@ -39,9 +39,11 @@ class Mainnews {
       published: data["published"],
       slug: data["slug"],
       subtitle: data["subtitle"],
-       image: data["image"]
-        .map<Image>((json)=> Image.imageparser(json))
-        .toList(),
+      image: data["image"] == null
+          ? []
+          : data["image"]
+              .map<Image>((json) => Image.imageparser(json))
+              .toList(),
     );
   }
 }

@@ -41,4 +41,6 @@ class Owner{
       verifiedmobile: data["verifiedmobile"]
      );
    }
+
+
 }

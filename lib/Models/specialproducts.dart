@@ -6,7 +6,6 @@ import 'package:twoo/Models/user.dart';
 import 'package:twoo/Models/variantvalue.dart';
 
 class Specialproduct {
-
   String barcode;
   int count;
   String createdAt;
@@ -15,13 +14,12 @@ class Specialproduct {
   String defaultimage;
   int discountamount;
   int discountedprice;
-  List<Author>authors;
+  List<Author> authors;
   List<Place> places;
   List<Subject> subjects;
   List<User> user;
   List<Variantvalue> variantvalues;
-  List<File>files;
-
+  List<File> files;
 
   Specialproduct({
     this.barcode,
@@ -40,9 +38,9 @@ class Specialproduct {
     this.files,
   });
 
-  factory Specialproduct.parser(Map<String, dynamic> data){
+  factory Specialproduct.parser(Map<String, dynamic> data) {
     return Specialproduct(
-        barcode: data["barcode"],
+      barcode: data["barcode"],
       count: data["count"],
       createdAt: data["created_at"],
       createdAtConvert: data["created_at_convert"],
@@ -50,25 +48,33 @@ class Specialproduct {
       defaultimage: data["defaultimage"],
       discountamount: data["discountamount"],
       discountedprice: data["discountedprice"],
-      authors: data["authors"]
-       .map<Author>((json)=> Author.authorparser(json))
-      .toList(),
-      places: data["places"]
-       .map<Place>((json)=> Place.placesparser(json))
-      .toList(),
-      subjects: data["subjects"]
-      .map<Subject>((json)=> Subject.subjectsparser(json))
-      .toList(),
-      user: data["user"]
-      .map<User>((json)=> User.userparser(json))
-      .toList(),
-      variantvalues: data["variantvalues"]
-       .map<Variantvalue>((json)=> Variantvalue.variantvalueparser(json))
-      .toList(),
-      files: data["files"]
-          .map<File>((json) => File.filesparser(json))
-          .toList(),
-
+      authors: data["authors"] == null
+          ? []
+          : data["authors"]
+              .map<Author>((json) => Author.authorparser(json))
+              .toList(),
+      places: data["places"] == null
+          ? []
+          : data["places"]
+              .map<Place>((json) => Place.placesparser(json))
+              .toList(),
+      subjects: data["subjects"] == null
+          ? []
+          : data["subjects"]
+              .map<Subject>((json) => Subject.subjectsparser(json))
+              .toList(),
+      user: data["user"] == null
+          ? []
+          : data["user"].map<User>((json) => User.userparser(json)).toList(),
+      variantvalues: data["users"] == null
+          ? []
+          : data["variantvalues"]
+              .map<Variantvalue>(
+                  (json) => Variantvalue.variantvalueparser(json))
+              .toList(),
+      files: data["files"] == null
+          ? []
+          : data["files"].map<File>((json) => File.filesparser(json)).toList(),
     );
   }
 }

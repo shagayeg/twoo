@@ -1,6 +1,6 @@
 import 'package:twoo/Models/city.dart';
 
-class District{
+class District {
   String id;
   String name;
   List<City> city;
@@ -10,14 +10,13 @@ class District{
     this.id,
     this.city,
   });
-   factory District.parser(Map<String, dynamic> data){
-     return District(
-       id: data["id"],
-       name: data["name"],
-       city: data["city"]
-       .map<City>((json)=> City.parser(json))
-       .toList(),
-
-     );
-   }
+  factory District.parser(Map<String, dynamic> data) {
+    return District(
+      id: data["id"],
+      name: data["name"],
+      city: data["city"] == null
+          ? []
+          : data["city"].map<City>((json) => City.parser(json)).toList(),
+    );
+  }
 }

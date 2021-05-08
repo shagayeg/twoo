@@ -26,7 +26,9 @@ class Variantvalue{
       discountedkind: data["discountedkind"],
       discountedprice: data["discountprice"],
       price: data["price"],
-      discount: data["discount"]
+     discount : data["discount"] == null
+          ? []
+      : data["discount"]
       .map<Discount>((json)=> Discount.discountparser(json))
        .toList()
 

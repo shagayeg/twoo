@@ -2,29 +2,26 @@ import 'dart:convert';
 
 import 'package:twoo/Models/reefer.dart';
 
-class State{
-
+class State {
   List visit;
   List order;
   List sale;
-  List<Reefer>reefer;
+  List<Reefer> reefer;
 
   State({
-
     this.order,
     this.sale,
     this.visit,
     this.reefer,
-
   });
-  factory State.parser(Map<String, dynamic> data){
+  factory State.parser(Map<String, dynamic> data) {
     return State(
       order: data["order"],
       sale: data["sale"],
       visit: data["visit"],
-      reefer: data["reefer"]
-      .map<Reefer>((json)=> Reefer.parser(json))
-      .toList(),
+      reefer: data["reefer"] == null
+          ? []
+          : data["reefer"].map<Reefer>((json) => Reefer.parser(json)).toList(),
     );
   }
 }

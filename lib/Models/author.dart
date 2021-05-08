@@ -15,14 +15,14 @@ class Author {
     this.type,
     
   });
-  factory Author.authorparser(Map<String, dynamic> data) {
+  factory Author.authorparser(Map<String, dynamic> data1) {
     return Author(
-      name: data["name"],
-      createat: data["createat"],
-      story: data["story"],
-      id: data["id"],
-      body: data["body"],
-      type: data["type"],
+      name: data1["name"],
+      createat: data1["createat"],
+      story: data1["story"],
+      id: data1["id"],
+      body: data1["body"],
+      type: data1["type"],
     );
   }
 }

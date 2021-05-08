@@ -40,24 +40,37 @@ class Product {
       createdAt: productList["created_at"],
       createdAtConvert: productList["created_at_convert"],
       createdAtMoment: productList["created_at_moment"],
-      authors: productList["authors"]
-          .map<Author>((json) => Author.authorparser(json))
-          .toList(),
-      files: productList["files"]
-          .map<File>((json) => File.filesparser(json))
-          .toList(),
-      user: productList["user"]
-          .map<User>((json) => User.userparser(json))
-          .toList(),
-      subjects: productList["subjects"]
-          .map<Subject>((json) => Subject.subjectsparser(json))
-          .toList(),
-      places: productList["places"]
-          .map<Place>((json) => Place.placesparser(json))
-          .toList(),
-      variantvalues: productList["variantvalues"]
-          .map<Variantvalue>((json) => Variantvalue.variantvalueparser(json))
-          .toList(),
+      authors: productList["authors"] == null
+          ? []
+          : productList["authors"]
+              .map<Author>((json) => Author.authorparser(json))
+              .toList(),
+      files: productList["files"] == null
+          ? []
+          : productList["files"]
+              .map<File>((json) => File.filesparser(json))
+              .toList(),
+      user: productList["users"] == null
+          ? []
+          : productList["users"]
+              .map<User>((json) => User.userparser(json))
+              .toList(),
+      subjects: productList["subjects"] == null
+          ? []
+          : productList["subjects"]
+              .map<Subject>((json) => Subject.subjectsparser(json))
+              .toList(),
+      places: productList["places"] == null
+          ? []
+          : productList["places"]
+              .map<Place>((json) => Place.placesparser(json))
+              .toList(),
+      variantvalues: productList["users"] == null
+          ? []
+          : productList["variantvalues"]
+              .map<Variantvalue>(
+                  (json) => Variantvalue.variantvalueparser(json))
+              .toList(),
     );
   }
 }

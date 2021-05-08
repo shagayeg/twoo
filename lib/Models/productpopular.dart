@@ -52,21 +52,32 @@ class Productpopular{
       defaultimage: data["defaultimage"],
       discountamount: data["discountamount"],
       discountedprice: data["discountedprice"],
-      user: data["user"]
-      .map<User>((json)=> User.userparser(json))
-      .toList(),
-      variantvalues: data["variantvalues"]
-       .map<Variantvalue>((json)=> Variantvalue.variantvalueparser(json))
-      .toList(),
-      authors: data["authors"]
-       .map<Author>((json)=> Author.authorparser(json))
-      .toList(),
-      places: data["places"]
-       .map<Place>((json)=> Place.placesparser(json))
-      .toList(),
-      subjects: data["subjects"]
-       .map<Subject>((json)=> Subject.subjectsparser(json))
-      .toList(),
+      
+     user: data["user"] == null
+          ? []
+          : data["user"].map<User>((json) => User.userparser(json)).toList(),
+          
+      variantvalues: data["users"] == null
+          ? []
+          : data["variantvalues"]
+              .map<Variantvalue>(
+                  (json) => Variantvalue.variantvalueparser(json))
+              .toList(),
+       authors: data["authors"] == null
+          ? []
+          : data["authors"]
+              .map<Author>((json) => Author.authorparser(json))
+              .toList(),
+      places: data["places"] == null
+          ? []
+          : data["places"]
+              .map<Place>((json) => Place.placesparser(json))
+              .toList(),
+       subjects: data["subjects"] == null
+          ? []
+          : data["subjects"]
+              .map<Subject>((json) => Subject.subjectsparser(json))
+              .toList(),
       files: data["files"]
           .map<File>((json) => File.filesparser(json))
           .toList(),

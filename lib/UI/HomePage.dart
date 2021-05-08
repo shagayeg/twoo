@@ -3,9 +3,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:twoo/API/HomePageAPI.dart';
+import 'package:twoo/Models/author.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
-//import 'package:twoo/Models/files.dart';
+// import 'package:twoo/Models/files.dart';
 import 'package:twoo/Models/product.dart';
+import 'package:twoo/Models/store.dart';
+import 'package:twoo/Models/stores.dart';
+import 'package:twoo/UI/namecate.dart';
+import 'package:twoo/UI/storesss.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -22,7 +27,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _isReq = false;
   List<CategoriesWithProducts> data = new List();
-  List<Product> productList = new List();
+  // List<Product> productList = new List();
+  // List<Author> data1 = new List();
+  List<Stores> data2 = new List();
+  List<Store> data3 = new List();
+
+  get index => null;
 
   @override
   void initState() {
@@ -34,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _isReq = false;
       });
-     // log(value.statusCode.toString());
+      // log(value.statusCode.toString());
       if (value.statusCode == 200) {
         var body = jsonDecode(value.body);
         setState(() {
@@ -42,13 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
               .map<CategoriesWithProducts>(
                   (json) => CategoriesWithProducts.parser(json))
               .toList();
-          productList = body["products"]
-                .map<Product>((json) => Product.parser(json))
-                .toList();
-          
-        });
-         
 
+          data2 = body["stores"]
+              .map<Stores>((json) => Stores.parser(json))
+              .toList();
+        });
       }
     });
   }
@@ -102,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemCount: data.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                      //  log(data.length.toString());
+                        //  log(data.length.toString());
                         return Container(
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: 200,
@@ -263,153 +271,273 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: 20,
                   ),
-                  // circle items
+
                   Container(
                     height: MediaQuery.of(context).size.height * 0.10,
                     width: MediaQuery.of(context).size.width * 0.99,
-                    //color: Colors.orange,
-                    child: ListView(
+                    // color: Colors.orange,
+                    child: ListView.builder(
+                      itemCount: data.length,
                       scrollDirection: Axis.horizontal,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.red[400],
-                                borderRadius: BorderRadius.circular(80.0),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {});
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => new Namecate(
+                                          category: data[index],
+                                        )));
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 22),
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.red[400],
+                                  borderRadius: BorderRadius.circular(80.0),
+                                ),
+                                child: Icon(
+                                  Icons.home,
+                                  color: Colors.white,
+                                ),
                               ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('فروش ویژه')
-                          ],
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.blue[300],
-                                borderRadius: BorderRadius.circular(80.0),
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('کالای دیجیتالی')
-                          ],
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.green[400],
-                                borderRadius: BorderRadius.circular(80.0),
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('سوبر مارکت')
-                          ],
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.purple,
-                                borderRadius: BorderRadius.circular(80.0),
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('مدو بوشاک')
-                          ],
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.orange[400],
-                                borderRadius: BorderRadius.circular(80.0),
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('خانه و آشیزخانه')
-                          ],
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.pink[500],
-                                borderRadius: BorderRadius.circular(80.0),
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('دیجی بلاس')
-                          ],
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.orange[800],
-                                borderRadius: BorderRadius.circular(80.0),
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text('مگنت')
-                          ],
-                        )
-                      ],
+                              Text(data[index].name)
+                            ],
+                          ),
+                        );
+                      },
                     ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.10,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    color: Colors.amber,
+                    child: ListView.builder(
+                        itemCount: data2.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: (){
+                               setState(() {});
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => new Storesss(
+                                          sto: data2[index],
+                                        )));
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 22),
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.red[400],
+                                    borderRadius: BorderRadius.circular(80.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.home,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(data[index].name)
+                              ],
+                            ),
+                          );
+                        }),
+                  )
+                  //color: Colors.orange,
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: [
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.red[400],
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('فروش ویژه')
+                  //       ],
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //     ),
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.blue[300],
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('کالای دیجیتالی')
+                  //       ],
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //     ),
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.green[400],
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('سوبر مارکت')
+                  //       ],
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //     ),
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.purple,
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('مدو بوشاک')
+                  //       ],
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //     ),
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.orange[400],
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('خانه و آشیزخانه')
+                  //       ],
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //     ),
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.pink[500],
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('دیجی بلاس')
+                  //       ],
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //     ),
+                  //     Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.orange[800],
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ),
+                  //           child: Icon(
+                  //             Icons.home,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         Text('مگنت')
+                  //       ],
+                  //     )
+                  //   ],
+                  // ),
+
+                  //////////////////////////////////////////////////////////////////////////////////
+
+                  // Container(
+                  //   height: 150,width: 250,
+                  //   color: Colors.green,
+                  //   child: InkWell(child: Icon(Icons.store),
+                  //   onTap: (){
+                  //     setState(() {});
+                  //         Navigator.push(
+                  //             context,
+                  //             new MaterialPageRoute(
+                  //                 builder: (context) => new Storesss(sto: data2[index])));
+                  //   },
+                  //   ),
+                  // child: ListView.builder(
+                  //   itemCount: data2.length,
+                  //   itemBuilder: (context,index){
+                  //     return InkWell(
+                  //       onTap: (){
+                  //         setState(() {});
+                  //       Navigator.push(
+                  //           context,
+                  //           new MaterialPageRoute(
+                  //               builder: (context) => new Storesss()));
+                  //       },
+                  //       child: Column(
+                  //       children: [
+                  //         Container(
+                  //           margin: EdgeInsets.symmetric(horizontal: 22),
+                  //           height: 50,
+                  //           width: 50,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.red[400],
+                  //             borderRadius: BorderRadius.circular(80.0),
+
+                  //           ),
+
+                  //       )]));
+                  //   },
+                  // ),
+
+                  ,
+                  SizedBox(
+                    height: 20,
                   ),
                   Container(
                       height: MediaQuery.of(context).size.height * 0.58,
@@ -2503,53 +2631,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.pink,
-                    child: ListView.builder(
-                      itemCount:1, //productList.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                       log(productList.length.toString());
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.3,
-                          width: 200,
-                          color: Colors.green,
-                          margin: EdgeInsets.symmetric(horizontal: 12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "barcode : " + productList[index].barcode,
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "count : " + productList[index].count.toString(),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "createdAt : " +
-                                    productList[index].createdAt.toString(),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "createdAtConvert : " +
-                                    productList[index].createdAtConvert,
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "createdAtMoment : " +
-                                    productList[index].createdAtMoment,
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "authors.length : " +
-                                    productList[index].authors.length.toString(),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
                   )
 
                   /*Container(

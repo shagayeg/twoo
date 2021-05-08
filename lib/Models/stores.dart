@@ -12,13 +12,18 @@ class Stores{
     this.prouctcount,
 
   });
-   factory Stores.storesparser(Map<String, dynamic> data){
+   factory Stores.parser(Map<String, dynamic> data2){
      return Stores(
-       domain: data["domain"],
-       prouctcount: data["prouctcount"],
-       store: data["store"]
+       domain: data2["domain"],
+       prouctcount: data2["prouctcount"],
+      store : data2["store"] == null
+          ? []
+       : data2["store"]
          .map<Store>((json)=> Store.parser(json))
-       .toList(
-     ));
+         .toList(),
+       
+     );
    }
+
+  
 }

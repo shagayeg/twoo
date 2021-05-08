@@ -2,7 +2,6 @@ import 'package:twoo/Models/filedoc.dart';
 import 'package:twoo/Models/image.dart';
 
 class News {
-
   String createdat;
   String id;
   bool isdocument;
@@ -13,8 +12,8 @@ class News {
   String slug;
   String subtitle;
   String desc;
-  List<Image>image;
-  List<Filedoc>filesdoc;
+  List<Image> image;
+  List<Filedoc> filesdoc;
 
   News({
     this.desc,
@@ -29,12 +28,11 @@ class News {
     this.name,
     this.image,
     this.filesdoc,
-    
   });
 
-  factory News.parser(Map<String, dynamic> data){
+  factory News.parser(Map<String, dynamic> data) {
     return News(
-       createdat: data["createdat"],
+      createdat: data["createdat"],
       desc: data["desc"],
       id: data["id"],
       isdocument: data["isdocument"],
@@ -44,12 +42,16 @@ class News {
       published: data["published"],
       slug: data["slug"],
       subtitle: data["subtitle"],
-        image: data["image"]
-        .map<Image>((json)=> Image.imageparser(json))
-        .toList(),
-         filesdoc: data["filesdoc"]
-        .map<Filedoc>((json)=> Filedoc.filesdocparser(json))
-        .toList(),
+      image :data["image"] == null
+          ? []
+          : data["image"]
+              .map<Image>((json) => Image.imageparser(json))
+              .toList(),
+      filesdoc: data["filesdoc"] == null
+          ? []
+          : data["filesdoc"]
+              .map<Filedoc>((json) => Filedoc.filesdocparser(json))
+              .toList(),
     );
   }
 }

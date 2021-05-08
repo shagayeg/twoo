@@ -12,14 +12,13 @@ class Productlatest {
   String createdAt;
   String createdAtConvert;
   String createdAtMoment;
-  List<File>files;
-  List<User>user;
-  List<Author>authors;
-  List<Place>places;
-  List<Subject>subjects;
+  List<File> files;
+  List<User> user;
+  List<Author> authors;
+  List<Place> places;
+  List<Subject> subjects;
 
   Productlatest({
-
     this.count,
     this.barcode,
     this.createdAt,
@@ -31,28 +30,34 @@ class Productlatest {
     this.places,
     this.subjects,
   });
-   factory Productlatest.parser(Map<String, dynamic> data){
-     return Productlatest(
-        barcode: data["barcode"],
+  factory Productlatest.parser(Map<String, dynamic> data) {
+    return Productlatest(
+      barcode: data["barcode"],
       count: data["count"],
       createdAt: data["created_at"],
       createdAtConvert: data["created_at_convert"],
       createdAtMoment: data["created_at_moment"],
-       files: data["files"],
-       
-       user: data["user"]
-        .map<User>((json) => User.userparser(json))
-          .toList(),
-       authors: data["authors"]
-        .map<Author>((json) => Author.authorparser(json))
-          .toList(),
-       places: data["places"]
-        .map<Place>((json) => Place.placesparser(json))
-          .toList(),
-       subjects: data["subjects"]
-       .map<Subject>((json)=> Subject.subjectsparser(json))
-       .toList(),
-          
-     );
-   }
+      
+      files: data["files"],
+            
+      user: data["user"] == null
+          ? []
+          : data["user"].map<User>((json) => User.userparser(json)).toList(),
+      authors: data["authors"] == null
+          ? []
+          : data["authors"]
+              .map<Author>((json) => Author.authorparser(json))
+              .toList(),
+      places: data["places"] == null
+          ? []
+          : data["places"]
+              .map<Place>((json) => Place.placesparser(json))
+              .toList(),
+      subjects: data["subjects"] == null
+          ? []
+          : data["subjects"]
+              .map<Subject>((json) => Subject.subjectsparser(json))
+              .toList(),
+    );
+  }
 }
