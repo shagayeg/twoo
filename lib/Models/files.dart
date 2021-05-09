@@ -51,4 +51,6 @@ class File {
       url: data["url"],
     );
   }
+
+  static parser(data) {}
 }

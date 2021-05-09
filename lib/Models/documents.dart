@@ -2,6 +2,11 @@ import 'dart:convert';
 
 import 'package:twoo/Models/filedoc.dart';
 import 'package:twoo/Models/image.dart';
+import 'package:twoo/Models/state.dart';
+
+import 'irankish.dart';
+import 'mellat.dart';
+import 'owner.dart';
 
 class Documents {
   String crestedat;
@@ -15,8 +20,14 @@ class Documents {
   String name;
   bool published;
   String slug;
-  List<Filedoc> filesdoc;
-  List<Image> image;
+  // List<Filedoc> filesdoc;
+  // List<Image> image;
+  Image image; 
+  Filedoc filedoc;
+   
+
+  
+  
 
   Documents({
     this.crestedat,
@@ -30,8 +41,9 @@ class Documents {
     this.islikednews,
     this.published,
     this.slug,
-    this.filesdoc,
+    this.filedoc,
     this.image,
+    
   });
   factory Documents.parser(Map<String, dynamic> data) {
     return Documents(
@@ -46,16 +58,20 @@ class Documents {
       published: data["published"],
       slug: data["slug"],
       subtitle: data["subtitle"],
-      filesdoc: data["filesdoc"] == null
-          ? []
-          : data["filesdoc"]
-              .map<Filedoc>((json) => Filedoc.filesdocparser(json))
-              .toList(),
-      image: data["image"] == null
-          ? []
-          : data["image"]
-              .map<Image>((json) => Image.imageparser(json))
-              .toList(),
+      // filesdoc: data["filesdoc"] == null
+      //     ? []
+      //     : data["filesdoc"]
+      //         .map<Filedoc>((json) => Filedoc.filesdocparser(json))
+      //         .toList(),
+      // image: data["image"] == null
+      //     ? []
+      //     : data["image"]
+      //         .map<Image>((json) => Image.imageparser(json))
+      //         .toList(),
+        
+        filedoc: Filedoc.parser(data["filesdoc"]),
+         image:Image.parser(data["image"]),
+          
     );
   }
 }

@@ -28,4 +28,6 @@ class Subject {
        type: data["type"],
      );
    }
+
+  static parser(data) {}
 }

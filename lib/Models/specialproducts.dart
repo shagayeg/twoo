@@ -48,33 +48,39 @@ class Specialproduct {
       defaultimage: data["defaultimage"],
       discountamount: data["discountamount"],
       discountedprice: data["discountedprice"],
-      authors: data["authors"] == null
-          ? []
-          : data["authors"]
-              .map<Author>((json) => Author.authorparser(json))
-              .toList(),
-      places: data["places"] == null
-          ? []
-          : data["places"]
-              .map<Place>((json) => Place.placesparser(json))
-              .toList(),
-      subjects: data["subjects"] == null
-          ? []
-          : data["subjects"]
-              .map<Subject>((json) => Subject.subjectsparser(json))
-              .toList(),
-      user: data["user"] == null
-          ? []
-          : data["user"].map<User>((json) => User.userparser(json)).toList(),
-      variantvalues: data["users"] == null
-          ? []
-          : data["variantvalues"]
-              .map<Variantvalue>(
-                  (json) => Variantvalue.variantvalueparser(json))
-              .toList(),
-      files: data["files"] == null
-          ? []
-          : data["files"].map<File>((json) => File.filesparser(json)).toList(),
+       authors: Author.parser(data["auther"]),
+       files: File.parser(data["file"]),
+       places: Place.parser(data["places"]),
+       subjects: Subject.parser(data["subjects"]),
+       user: User.parser(data["user"]),
+       variantvalues: Variantvalue.parser(data["variantvalues"])
+      // authors: data["authors"] == null
+      //     ? []
+      //     : data["authors"]
+      //         .map<Author>((json) => Author.authorparser(json))
+      //         .toList(),
+      // places: data["places"] == null
+      //     ? []
+      //     : data["places"]
+      //         .map<Place>((json) => Place.placesparser(json))
+      //         .toList(),
+      // subjects: data["subjects"] == null
+      //     ? []
+      //     : data["subjects"]
+      //         .map<Subject>((json) => Subject.subjectsparser(json))
+      //         .toList(),
+      // user: data["user"] == null
+      //     ? []
+      //     : data["user"].map<User>((json) => User.userparser(json)).toList(),
+      // variantvalues: data["users"] == null
+      //     ? []
+      //     : data["variantvalues"]
+      //         .map<Variantvalue>(
+      //             (json) => Variantvalue.variantvalueparser(json))
+      //         .toList(),
+      // files: data["files"] == null
+      //     ? []
+      //     : data["files"].map<File>((json) => File.filesparser(json)).toList(),
     );
   }
 }

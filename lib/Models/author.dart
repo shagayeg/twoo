@@ -25,4 +25,6 @@ class Author {
       type: data1["type"],
     );
   }
+
+  static parser(data) {}
 }

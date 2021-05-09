@@ -1,25 +1,21 @@
-
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:twoo/Models/stores.dart';
+import 'package:twoo/Models/specialproducts.dart';
 
-class Storesss extends StatefulWidget {
-  final Stores sto;
+class Specialpage extends StatefulWidget {
+  final Specialproduct spec;
 
-  const Storesss({Key key, this.sto}) : super(key: key);
+  const Specialpage({Key key, this.spec}) : super(key: key);
 
   @override 
   State<StatefulWidget> createState() {
-    return  _Storesss(sto); 
+    return  _Specialpage(spec); 
   }
 }
 // ignore: unused_element
-class _Storesss extends State<Storesss>{
-  final Stores sto;
+class _Specialpage extends State<Specialpage>{
+  final Specialproduct spec;
 
-  _Storesss(this.sto);
+  _Specialpage(this.spec);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class _Storesss extends State<Storesss>{
                 margin: EdgeInsets.symmetric(horizontal: 2),
                 // color: Colors.green,
                 child: ListView.builder(
-                  itemCount:sto.toString().length,
+                  itemCount:spec.toString().length,
                   itemBuilder: (context,index){
                     return Card(
                    
@@ -52,9 +48,7 @@ class _Storesss extends State<Storesss>{
                         color: Colors.pink[200],
                         child: Column(
                           children: [
-                            Text(sto.store.toString()),
-                            Text(sto.domain),
-                            Text(sto.prouctcount.toString())
+                            Text(spec.user.toString())
                            ] )));
                   },
                 ),

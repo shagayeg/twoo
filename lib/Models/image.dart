@@ -46,4 +46,8 @@ class Image {
        url: data["url"],
      );
    }
+
+  static parser(data) {}
+
+ 
 }

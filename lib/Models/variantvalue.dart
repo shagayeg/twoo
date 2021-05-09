@@ -34,4 +34,6 @@ class Variantvalue{
 
     );
   }
+
+  static parser(data) {}
 }

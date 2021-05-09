@@ -43,7 +43,7 @@ class _Namecate extends State<Namecate> {
                 margin: EdgeInsets.symmetric(horizontal: 2),
                 //  color: Colors.purple,
                 child: ListView.builder(
-                  itemCount: category.name.length,
+                  itemCount: category.length,
                   // scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Card(
@@ -60,8 +60,14 @@ class _Namecate extends State<Namecate> {
                         color: Colors.pink[200],
                         child: Column(
                           children: [
-                            Text(category.image),
-                            SizedBox(height: 100,),
+                            
+                            Image.network(category.image),
+                          // Container(
+                          //   height: 100,width: 200,color: Colors.amber,
+                          //   // decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(category.image))),
+                          // ),
+                            // Text(category.image),
+                            SizedBox(height: 10,),
                             Text(category.image),
                              SizedBox(height: 50,),
                             Text(category.id),

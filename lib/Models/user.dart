@@ -29,4 +29,6 @@ class User {
       birthday: data["birthday"]
     );
   }
+
+  static parser(data) {}
 }

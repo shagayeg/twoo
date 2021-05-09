@@ -46,4 +46,8 @@ class Filedoc{
        type: data["type"],
      );
    }
+
+  static parser(data) {}
+
+  // static parser(List<String> list) {}
 }

@@ -27,4 +27,6 @@ class Place {
        type: data["type"],
      );
    }
+
+  static parser(data) {}
 }
