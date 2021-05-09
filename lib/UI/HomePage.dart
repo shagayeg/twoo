@@ -64,12 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
           documentsList = body["documents"]
               .map<Documents>((json) => Documents.parser(json))
               .toList();
-          mainList = body["mainnews"]
-              .map<Mainnews>((json) => Mainnews.parser(json))
-              .toList();
-          specialproductsList =body ["specialproducts"]
-              .map<Specialproduct>((json) => Specialproduct .parser(json))
-              .toList();
+          // mainList = body["mainnews"]
+          // .map<Mainnews>((json) => Mainnews.parser(json))
+          // .toList();
+          // specialproductsList = body["specialproducts"]
+          //     .map<Specialproduct>((json) => Specialproduct.parser(json))
+          //     .toList();
         });
       }
     });
@@ -571,14 +571,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            setState(() {});
+                            // setState(() {});
                             Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => new Docpage(
-                                          // sto: storesList[index],
-                                          doc: documentsList[index],
-                                        )));
+                              context,
+                              new MaterialPageRoute(
+                                builder: (context) => new Docpage(
+                                  // sto: storesList[index],
+                                  doc: documentsList[index],
+                                ),
+                              ),
+                            );
                           },
                           child: Column(
                             children: [
@@ -1481,35 +1483,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
                   Container(
-                      height: 200,
-                      width: 350,
-                      color: Colors.amberAccent,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              setState(() {});
-                              Navigator.push(
-                                  context,
-                                  new MaterialPageRoute(
-                                      builder: (context) => new Mainnewspage(
-                                          // main: mainList[index],
-                                          )));
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(10),
-                              height: 100,
-                              width: 100,
-                              color: Colors.blueAccent,
-                              child: Column(
-                                children: [Text(mainList[index].name)],
-                              ),
-                            ),
-                          );
-                        },
-                      )),
+                    height: 200,
+                    width: 350,
+                    color: Colors.amberAccent,
+                    // child: ListView.builder(
+                    //   scrollDirection: Axis.horizontal,
+                    //   itemCount: 5,
+                    //   itemBuilder: (context, index) {
+                    //     return InkWell(
+                    //       onTap: () {
+                    //         setState(() {});
+                    //         Navigator.push(
+                    //             context,
+                    //             new MaterialPageRoute(
+                    //                 builder: (context) => new Mainnewspage(
+                    //                     // main: mainList[index],
+                    //                     )));
+                    //       },
+                    //       child: Container(
+                    //         margin: EdgeInsets.all(10),
+                    //         height: 100,
+                    //         width: 100,
+                    //         color: Colors.blueAccent,
+                    //         child: Column(
+                    //           children: [
+                    //             Text(
+                    //               mainList[index].name,
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -1522,14 +1529,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           itemCount: 2,
                           itemBuilder: (context, index) {
                             return InkWell(
-                              onTap: (){
-                                  setState(() {});
-                              Navigator.push(
-                                  context,
-                                  new MaterialPageRoute(
-                                      builder: (context) => new Specialpage(
-                                            spec: specialproductsList[index],
-                                          )));
+                              onTap: () {
+                                setState(() {});
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => new Specialpage(
+                                              spec: specialproductsList[index],
+                                            )));
                               },
                               child: Card(
                                   margin: EdgeInsetsDirectional.only(
@@ -1538,9 +1545,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     height: 100,
                                     width: 200,
                                     child: Column(
-                                      children: [
-                                      
-                                      ],
+                                      children: [],
                                     ),
                                   )),
                             );

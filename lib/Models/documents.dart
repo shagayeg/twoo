@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:twoo/Models/filedoc.dart';
 import 'package:twoo/Models/image.dart';
@@ -20,10 +21,10 @@ class Documents {
   String name;
   bool published;
   String slug;
-  // List<Filedoc> filesdoc;
+  List<Filedoc> filesdoc;
   // List<Image> image;
   Image image; 
-  Filedoc filedoc;
+  // Filedoc filedoc;
    
 
   
@@ -41,36 +42,37 @@ class Documents {
     this.islikednews,
     this.published,
     this.slug,
-    this.filedoc,
+    this.filesdoc,
     this.image,
     
   });
   factory Documents.parser(Map<String, dynamic> data) {
+    log(data["image"].toString());
     return Documents(
       categories: data["categories"],
-      crestedat: data["createat"],
+      crestedat: data["created_at"],
       desc: data["desc"],
       id: data["id"],
-      isdocument: data["isdocument"],
-      islikednews: data["islikenews"],
-      ismain: data["ismain"],
+      isdocument: data["is_document"],
+      islikednews: data["is_liked_news"],
+      ismain: data["is_main"],
       name: data["name"],
       published: data["published"],
       slug: data["slug"],
-      subtitle: data["subtitle"],
-      // filesdoc: data["filesdoc"] == null
-      //     ? []
-      //     : data["filesdoc"]
-      //         .map<Filedoc>((json) => Filedoc.filesdocparser(json))
-      //         .toList(),
+      subtitle: data["sub_title"],
+      filesdoc: data["files"] == null
+          ? []
+          : data["files"]
+              .map<Filedoc>((json) => Filedoc.filesdocparser(json))
+              .toList(),
       // image: data["image"] == null
       //     ? []
       //     : data["image"]
       //         .map<Image>((json) => Image.imageparser(json))
       //         .toList(),
         
-        filedoc: Filedoc.parser(data["filesdoc"]),
-         image:Image.parser(data["image"]),
+        // filedoc: Filedoc.parser(data["filesdoc"]),
+         image:Image.imageparser(data["image"]),
           
     );
   }

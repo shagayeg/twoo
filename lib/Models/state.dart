@@ -16,7 +16,7 @@ class State {
     this.reefer,
   });
   factory State.parser(Map<String, dynamic> data) {
-    log(data.toString());
+    // log(data.toString());
     return State(
       order: data["order"],
       sale: data["sale"],

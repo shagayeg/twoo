@@ -70,7 +70,6 @@ class Store {
   });
 
   factory Store.parser(Map<String, dynamic> data3) {
-    log(data3["stats"].toString() + " : vsldjhnjvnfsjcvn");
     return Store(
       acceptablecustomerregisterinfo: data3["acceptablecustomerregisterinfo"],
       address: data3["address"],

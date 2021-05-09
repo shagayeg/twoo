@@ -14,7 +14,7 @@ class Paymentfacility{
     
   });
   factory Paymentfacility.parser(Map<String, dynamic> data){
-    log(data.toString());
+    // log(data.toString());
     return Paymentfacility(
       apikey: data["apikey"],
       internetterminalpassword: data["internetterminalpassword"],
