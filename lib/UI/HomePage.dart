@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Stores> storesList = new List();
   List<Documents> documentsList = new List();
   List<Store> data3 = new List();
-  List<Mainnews> mainList = new List();
+  Mainnews mainNew = new Mainnews();
   List<Specialproduct> specialproductsList = new List();
 
   @override
@@ -64,9 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           documentsList = body["documents"]
               .map<Documents>((json) => Documents.parser(json))
               .toList();
-          // mainList = body["mainnews"]
-          // .map<Mainnews>((json) => Mainnews.parser(json))
-          // .toList();
+          mainNew = Mainnews.parser(body["main_news"]);
           // specialproductsList = body["specialproducts"]
           //     .map<Specialproduct>((json) => Specialproduct.parser(json))
           //     .toList();
