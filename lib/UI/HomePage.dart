@@ -65,9 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
               .map<Documents>((json) => Documents.parser(json))
               .toList();
           mainNew = Mainnews.parser(body["main_news"]);
-          // specialproductsList = body["specialproducts"]
-          //     .map<Specialproduct>((json) => Specialproduct.parser(json))
-          //     .toList();
+          specialproductsList = body["specialProducts"]
+              .map<Specialproduct>((json) => Specialproduct.parser(json))
+              .toList();
         });
       }
     });
@@ -1479,41 +1479,43 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: 20,
                   ),
-
+                  // mainNew Widget
                   Container(
                     height: 200,
                     width: 350,
                     color: Colors.amberAccent,
-                    // child: ListView.builder(
-                    //   scrollDirection: Axis.horizontal,
-                    //   itemCount: 5,
-                    //   itemBuilder: (context, index) {
-                    //     return InkWell(
-                    //       onTap: () {
-                    //         setState(() {});
-                    //         Navigator.push(
-                    //             context,
-                    //             new MaterialPageRoute(
-                    //                 builder: (context) => new Mainnewspage(
-                    //                     // main: mainList[index],
-                    //                     )));
-                    //       },
-                    //       child: Container(
-                    //         margin: EdgeInsets.all(10),
-                    //         height: 100,
-                    //         width: 100,
-                    //         color: Colors.blueAccent,
-                    //         child: Column(
-                    //           children: [
-                    //             Text(
-                    //               mainList[index].name,
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {});
+                            Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                builder: (context) => new Mainnewspage(
+                                    // main: mainList[index],
+                                    ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            height: 100,
+                            width: 100,
+                            color: Colors.blueAccent,
+                            child: Column(
+                              children: [
+                                Text(
+                                  mainNew.name,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 20,
