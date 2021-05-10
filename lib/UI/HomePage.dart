@@ -80,10 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
           productlatestList = body["product_latest"]
               .map<Productlatest>((json) => Productlatest.parser(json))
               .toList();
-              productpopularList =body["product_popular"]
-              .map<Productpopular>((json) => Productpopular.productpopularparser(json))
+          productpopularList = body["product_popular"]
+              .map<Productpopular>(
+                  (json) => Productpopular.productpopularparser(json))
               .toList();
-             
         });
       }
     });
@@ -299,7 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: 20,
                   ),
-                   Container(
+                  Container(
                     height: MediaQuery.of(context).size.height * 0.40,
                     width: MediaQuery.of(context).size.width * 0.99,
                     color: Colors.pink[300],
@@ -313,15 +313,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.purple[100],
                           margin: EdgeInsets.all(10),
                           child: Column(
-                            children: [
-                              Text(productpopularList[index].name)
-                            ],
+                            children: [Text(productpopularList[index].name)],
                           ),
                         );
                       },
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
 
@@ -359,7 +357,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               Text(data[index].name),
-                   
                             ],
                           ),
                         );

@@ -16,12 +16,12 @@ class Specialproduct {
   String defaultimage;
   int discountamount;
   int discountedprice;
-  Author authors;
+  List<Author> authors;
   List<Place> places;
   List<Subject> subjects;
- User user;
+  User user;
   List<Variantvalue> variantvalues;
-  File files;
+  List<File> files;
   String firstimage;
 
   Specialproduct({
@@ -54,20 +54,20 @@ class Specialproduct {
       defaultimage: data["defaultimage"],
       discountamount: data["discounted_amount"],
       discountedprice: data["discountedprice"],
-      name:  data["name"],
-      price:  data["price"],
+      name: data["name"],
+      price: data["price"],
       firstimage: data["first_image"],
-       authors: Author.authorparser(data["authors"]),
-       files: File.filesparser(data["file"]),
-       places: Place.parser(data["places"]),
-       subjects: Subject.parser(data["subjects"]),
-       user: User.userparser(data["user"]),
-       variantvalues: Variantvalue.parser(data["variantvalues"])
-      // authors: data["authors"] == null
-      //     ? []
-      //     : data["authors"]
-      //         .map<Author>((json) => Author.authorparser(json))
-      //         .toList(),
+      // authors: Author.authorparser(data["authors"]),
+      // files: File.filesparser(data["file"]),
+      places: Place.parser(data["places"]),
+      subjects: Subject.parser(data["subjects"]),
+      user: User.userparser(data["user"]),
+      variantvalues: Variantvalue.parser(data["variantvalues"]),
+      authors: data["authors"] == null
+          ? []
+          : data["authors"]
+              .map<Author>((json) => Author.authorparser(json))
+              .toList(),
       // places: data["places"] == null
       //     ? []
       //     : data["places"]
@@ -87,9 +87,9 @@ class Specialproduct {
       //         .map<Variantvalue>(
       //             (json) => Variantvalue.variantvalueparser(json))
       //         .toList(),
-      // files: data["files"] == null
-      //     ? []
-      //     : data["files"].map<File>((json) => File.filesparser(json)).toList(),
+      files: data["files"] == null
+          ? []
+          : data["files"].map<File>((json) => File.filesparser(json)).toList(),
     );
   }
 }

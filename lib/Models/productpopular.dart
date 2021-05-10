@@ -53,7 +53,7 @@ class Productpopular{
       createdAtMoment: data["created_at_moment"],
       defaultimage: data["default_image"],
       discountamount: data["discount_amount"],
-      discountedprice: data["education_social"],
+      discountedprice: data["discounted_price"],
       name: data["name"],
     user: User.userparser(data["user"]),
           
