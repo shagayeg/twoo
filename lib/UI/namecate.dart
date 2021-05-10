@@ -6,12 +6,13 @@ import 'package:twoo/Models/product.dart';
 
 class Namecate extends StatefulWidget {
   final CategoriesWithProducts category;
- 
 
   const Namecate({Key key, this.category}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return new _Namecate(category,); 
+    return new _Namecate(
+      category,
+    );
   }
 }
 
@@ -22,7 +23,9 @@ class _Namecate extends State<Namecate> {
   // List<Product> productlist = new List();
   // List<Author> data1 = new List();
 
-  _Namecate(this.category,);
+  _Namecate(
+    this.category,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class _Namecate extends State<Namecate> {
                 margin: EdgeInsets.symmetric(horizontal: 2),
                 //  color: Colors.purple,
                 child: ListView.builder(
-                  itemCount: category.length,
+                  itemCount: category.id.length,
                   // scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Card(
@@ -60,22 +63,29 @@ class _Namecate extends State<Namecate> {
                         color: Colors.pink[200],
                         child: Column(
                           children: [
-                            
                             Image.network(category.image),
-                          // Container(
-                          //   height: 100,width: 200,color: Colors.amber,
-                          //   // decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(category.image))),
-                          // ),
-                            // Text(category.image),
-                            SizedBox(height: 10,),
-                            Text(category.image),
-                             SizedBox(height: 50,),
+                            // Container(
+                            //   height: 100,width: 200,color: Colors.amber,
+                            //   // decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(category.image))),
+                            // ),
+                             Text(category.image),
+                            SizedBox(
+                              height: 10,
+                            ),
+                              
+                            SizedBox(
+                              height: 50,
+                            ),
                             Text(category.id),
-                             SizedBox(height: 50,),
+                            SizedBox(
+                              height: 50,
+                            ),
                             Text(category.name),
-                             SizedBox(height: 50,),
+                            SizedBox(
+                              height: 50,
+                            ),
                             Text(category.main.toString()),
-                            // Text(category.products.toString())
+                             Text(category.products.toString())
                           ],
                         ),
                       ),

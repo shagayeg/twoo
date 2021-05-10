@@ -71,16 +71,16 @@ class Store {
 
   factory Store.parser(Map<String, dynamic> data3) {
     return Store(
-      acceptablecustomerregisterinfo: data3["acceptablecustomerregisterinfo"],
+      acceptablecustomerregisterinfo: data3["acceptable_customer_register_info"],
       address: data3["address"],
       cellphone: data3["cellphone"],
       closetime: data3["closetime"],
       copyright: data3["copyright"],
-      createdat: data3["createdat"],
+      createdat: data3["created_at"],
       crisp: data3["crisp"],
       currency: data3["currency"],
       currenttheme: data3["currenttheme"],
-      customizesmsfooter: data3["customizesmsfooter"],
+      customizesmsfooter: data3["customize_sms_footer"],
       description: data3["description"],
       displaybabcopyright: data3["displaybabcopyright"],
       email: data3["email"],

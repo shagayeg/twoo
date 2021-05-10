@@ -32,8 +32,8 @@ class Image {
   });
    factory Image.imageparser(Map<String, dynamic> data){
      return Image(
-       checksum: data["checksum"],
-       createdat: data["createdat"],
+       checksum: data["CheckSum"],
+       createdat: data["CreatedAt"],
        free: data["free"],
        id: data["id"],
        name: data["name"],
@@ -47,7 +47,7 @@ class Image {
      );
    }
 
-  static parser(data) {}
+  
 
  
 }

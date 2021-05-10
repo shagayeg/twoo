@@ -16,7 +16,7 @@ class Stores {
     // log(data2["store"]["name"].toString());
     return Stores(
       domain: data2["domain"],
-      prouctcount: data2["prouctcount"],
+      prouctcount: data2["product_count"],
       store:Store.parser(data2["store"]),
     );
   }

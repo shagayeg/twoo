@@ -39,7 +39,7 @@ Image image;
       published: data["published"],
       slug: data["slug"],
       subtitle: data["subtitle"],
-      image: Image.parser(data["image"]),
+      image: Image.imageparser(data["image"]),
       // image:Image.parser(data["image"]),
       // image: data["image"] == null
       //     ? []

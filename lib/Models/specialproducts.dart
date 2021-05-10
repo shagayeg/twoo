@@ -7,6 +7,8 @@ import 'package:twoo/Models/variantvalue.dart';
 
 class Specialproduct {
   String barcode;
+  String name;
+  int price;
   int count;
   String createdAt;
   String createdAtConvert;
@@ -14,12 +16,13 @@ class Specialproduct {
   String defaultimage;
   int discountamount;
   int discountedprice;
-  List<Author> authors;
+  Author authors;
   List<Place> places;
   List<Subject> subjects;
-  List<User> user;
+ User user;
   List<Variantvalue> variantvalues;
-  List<File> files;
+  File files;
+  String firstimage;
 
   Specialproduct({
     this.barcode,
@@ -36,6 +39,9 @@ class Specialproduct {
     this.user,
     this.variantvalues,
     this.files,
+    this.name,
+    this.price,
+    this.firstimage,
   });
 
   factory Specialproduct.parser(Map<String, dynamic> data) {
@@ -46,13 +52,16 @@ class Specialproduct {
       createdAtConvert: data["created_at_convert"],
       createdAtMoment: data["created_at_moment"],
       defaultimage: data["defaultimage"],
-      discountamount: data["discountamount"],
+      discountamount: data["discounted_amount"],
       discountedprice: data["discountedprice"],
-       authors: Author.parser(data["auther"]),
-       files: File.parser(data["file"]),
+      name:  data["name"],
+      price:  data["price"],
+      firstimage: data["first_image"],
+       authors: Author.authorparser(data["authors"]),
+       files: File.filesparser(data["file"]),
        places: Place.parser(data["places"]),
        subjects: Subject.parser(data["subjects"]),
-       user: User.parser(data["user"]),
+       user: User.userparser(data["user"]),
        variantvalues: Variantvalue.parser(data["variantvalues"])
       // authors: data["authors"] == null
       //     ? []

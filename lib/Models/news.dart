@@ -12,8 +12,8 @@ class News {
   String slug;
   String subtitle;
   String desc;
-  List<Image> image;
-  List<Filedoc> filesdoc;
+  Image image;
+ 
 
   News({
     this.desc,
@@ -27,31 +27,27 @@ class News {
     this.id,
     this.name,
     this.image,
-    this.filesdoc,
+  
   });
 
   factory News.parser(Map<String, dynamic> data) {
     return News(
-      createdat: data["createdat"],
+      createdat: data["created_at"],
       desc: data["desc"],
       id: data["id"],
-      isdocument: data["isdocument"],
-      islikednews: data["islikenews"],
-      ismain: data["ismain"],
+      isdocument: data["is_document"],
+      islikednews: data["is_liked_news"],
+      ismain: data["is_main"],
       name: data["name"],
       published: data["published"],
       slug: data["slug"],
-      subtitle: data["subtitle"],
-      image :data["image"] == null
-          ? []
-          : data["image"]
-              .map<Image>((json) => Image.imageparser(json))
-              .toList(),
-      filesdoc: data["filesdoc"] == null
-          ? []
-          : data["filesdoc"]
-              .map<Filedoc>((json) => Filedoc.filesdocparser(json))
-              .toList(),
+      subtitle: data["sub_title"],
+      image: Image.imageparser(data["image"]),
+      // filesdoc: data["filesdoc"] == null
+      //     ? []
+      //     : data["filesdoc"]
+      //         .map<Filedoc>((json) => Filedoc.filesdocparser(json))
+      //         .toList(),
     );
   }
 }

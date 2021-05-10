@@ -26,5 +26,5 @@ class CategoriesWithProducts {
     );
   }
 
-  get length => null;
+
 }

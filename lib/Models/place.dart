@@ -19,9 +19,9 @@ class Place {
 
   factory Place.placesparser(Map<String, dynamic> data){
      return Place(
-       id: data["id"],
+       id: data["_id"],
        body: data["body"],
-       createat: data["createat"],
+       createat: data["create_at"],
        name: data["name"],
        store: data["store"],
        type: data["type"],
@@ -29,4 +29,6 @@ class Place {
    }
 
   static parser(data) {}
+
+ 
 }

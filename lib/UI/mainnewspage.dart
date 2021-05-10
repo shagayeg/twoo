@@ -42,6 +42,8 @@ class _Mainnewspage extends State<Mainnewspage>{
                               width: 200,
                                 child: Column(
                                   children: [
+                                    Text(main.name),
+                                    Text(main.id)
                                     // Text(main.name),
                                     // Text(main.image.toString()),
                                  

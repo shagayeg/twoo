@@ -6,6 +6,9 @@ import 'package:twoo/API/HomePageAPI.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
 import 'package:twoo/Models/documents.dart';
 import 'package:twoo/Models/mainnews.dart';
+import 'package:twoo/Models/news.dart';
+import 'package:twoo/Models/productlatest.dart';
+import 'package:twoo/Models/productpopular.dart';
 import 'package:twoo/Models/specialproducts.dart';
 import 'package:twoo/Models/store.dart';
 import 'package:twoo/Models/stores.dart';
@@ -31,12 +34,16 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isReq = false;
   List<CategoriesWithProducts> data = new List();
   // List<Product> productList = new List();
-  // List<Author> data1 = new List();
+
   List<Stores> storesList = new List();
   List<Documents> documentsList = new List();
   List<Store> data3 = new List();
   Mainnews mainNew = new Mainnews();
   List<Specialproduct> specialproductsList = new List();
+  List<Slider> sliderList = new List();
+  List<News> newsList = new List();
+  List<Productlatest> productlatestList = new List();
+  List<Productpopular> productpopularList = new List();
 
   @override
   void initState() {
@@ -68,6 +75,15 @@ class _MyHomePageState extends State<MyHomePage> {
           specialproductsList = body["specialProducts"]
               .map<Specialproduct>((json) => Specialproduct.parser(json))
               .toList();
+          newsList =
+              body["news"].map<News>((json) => News.parser(json)).toList();
+          productlatestList = body["product_latest"]
+              .map<Productlatest>((json) => Productlatest.parser(json))
+              .toList();
+              productpopularList =body["product_popular"]
+              .map<Productpopular>((json) => Productpopular.productpopularparser(json))
+              .toList();
+             
         });
       }
     });
@@ -283,6 +299,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: 20,
                   ),
+                   Container(
+                    height: MediaQuery.of(context).size.height * 0.40,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    color: Colors.pink[300],
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 2,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.90,
+                          color: Colors.purple[100],
+                          margin: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Text(productpopularList[index].name)
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                   SizedBox(
+                    height: 20,
+                  ),
 
                   Container(
                     height: MediaQuery.of(context).size.height * 0.10,
@@ -317,8 +358,59 @@ class _MyHomePageState extends State<MyHomePage> {
                                   color: Colors.white,
                                 ),
                               ),
-                              Text(data[index].name)
+                              Text(data[index].name),
+                   
                             ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.40,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    color: Colors.pink[300],
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: newsList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.90,
+                          color: Colors.purple[100],
+                          margin: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Text(newsList[index].id),
+                              Text(newsList[index].name),
+                              Text(newsList[index].subtitle),
+                              Text(newsList[index].ismain.toString()),
+                              Text(newsList[index].image.type.toString()),
+                              Text(newsList[index].image.free.toString()),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.40,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    color: Colors.pink[300],
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 2,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.90,
+                          color: Colors.purple[100],
+                          margin: EdgeInsets.all(10),
+                          child: Column(
+                            children: [Text(productlatestList[index].name)],
                           ),
                         );
                       },
@@ -1495,8 +1587,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               context,
                               new MaterialPageRoute(
                                 builder: (context) => new Mainnewspage(
-                                    // main: mainList[index],
-                                    ),
+                                  main: mainNew,
+                                ),
                               ),
                             );
                           },

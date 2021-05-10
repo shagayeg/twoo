@@ -22,7 +22,7 @@ class User {
     return User(
       id: data["id"],
       call: data["call"],
-      createdat: data["createdat"],
+      createdat: data["created_at"],
       email: data["email"],
       fullname: data["fullname"],
       verified: data["verified"],
@@ -30,5 +30,5 @@ class User {
     );
   }
 
-  static parser(data) {}
+  
 }

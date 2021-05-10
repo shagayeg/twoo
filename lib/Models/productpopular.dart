@@ -6,11 +6,11 @@ import 'package:twoo/Models/files.dart';
 import 'package:twoo/Models/place.dart';
 import 'package:twoo/Models/subject.dart';
 import 'package:twoo/Models/user.dart';
-import 'package:twoo/Models/variantvalue.dart';
+
 
 class Productpopular{
 
-   String barcode;
+  String barcode;
   int count;
   String createdAt;
   String createdAtConvert;
@@ -18,12 +18,13 @@ class Productpopular{
   String defaultimage;
   int discountamount;
   int discountedprice;
-  List<User>user;
-  List<Variantvalue>variantvalues;
-  List<Author>authors;
-  List<Place>places;
-  List<Subject>subjects;
-  List<File>files;
+  String name;
+  User user;
+  // List<Variantvalue>variantvalues;
+  // List<Author>authors;
+  // List<Place>places;
+  // List<Subject>subjects;
+  // List<File>files;
 
   Productpopular({
     this.barcode,
@@ -35,11 +36,12 @@ class Productpopular{
       this.defaultimage,
       this.discountamount,
       this.user,
-      this.variantvalues,
-      this.authors,
-      this.places,
-      this.subjects,
-      this.files,
+      // this.variantvalues,
+      // this.authors,
+      // this.places,
+      // this.subjects,
+      // this.files,
+      this.name
   });
 
    factory Productpopular.productpopularparser(Map<String, dynamic> data){
@@ -49,38 +51,36 @@ class Productpopular{
       createdAt: data["created_at"],
       createdAtConvert: data["created_at_convert"],
       createdAtMoment: data["created_at_moment"],
-      defaultimage: data["defaultimage"],
-      discountamount: data["discountamount"],
-      discountedprice: data["discountedprice"],
-      
-     user: data["user"] == null
-          ? []
-          : data["user"].map<User>((json) => User.userparser(json)).toList(),
+      defaultimage: data["default_image"],
+      discountamount: data["discount_amount"],
+      discountedprice: data["education_social"],
+      name: data["name"],
+    user: User.userparser(data["user"]),
           
-      variantvalues: data["users"] == null
-          ? []
-          : data["variantvalues"]
-              .map<Variantvalue>(
-                  (json) => Variantvalue.variantvalueparser(json))
-              .toList(),
-       authors: data["authors"] == null
-          ? []
-          : data["authors"]
-              .map<Author>((json) => Author.authorparser(json))
-              .toList(),
-      places: data["places"] == null
-          ? []
-          : data["places"]
-              .map<Place>((json) => Place.placesparser(json))
-              .toList(),
-       subjects: data["subjects"] == null
-          ? []
-          : data["subjects"]
-              .map<Subject>((json) => Subject.subjectsparser(json))
-              .toList(),
-      files: data["files"]
-          .map<File>((json) => File.filesparser(json))
-          .toList(),
+      // variantvalues: data[""] == null
+      //     ? []
+      //     : data["variantvalues"]
+      //         .map<Variantvalue>(
+      //             (json) => Variantvalue.variantvalueparser(json))
+      //         .toList(),
+      //  authors: data["authors"] == null
+      //     ? []
+      //     : data["authors"]
+      //         .map<Author>((json) => Author.authorparser(json))
+      //         .toList(),
+      // places: data["places"] == null
+      //     ? []
+      //     : data["places"]
+      //         .map<Place>((json) => Place.placesparser(json))
+      //         .toList(),
+      //  subjects: data["subjects"] == null
+      //     ? []
+      //     : data["subjects"]
+      //         .map<Subject>((json) => Subject.subjectsparser(json))
+      //         .toList(),
+      // files: data["files"]
+      //     .map<File>((json) => File.filesparser(json))
+      //     .toList(),
      );
    }
 }

@@ -48,7 +48,11 @@ class _Specialpage extends State<Specialpage>{
                         color: Colors.pink[200],
                         child: Column(
                           children: [
-                            Text(spec.user.toString())
+                            Text(spec.user.toString()),
+                            Text(spec.subjects.toString()),
+                            Text(spec.name),
+                          
+                            Text(spec.count.toString())
                            ] )));
                   },
                 ),

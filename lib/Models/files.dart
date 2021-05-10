@@ -38,19 +38,19 @@ class File {
       discription: data["discription"],
       downlod: data["downlod"],
       free: data["free"],
-      isavailable: data["isavailable"],
+      isavailable: data["is_available"],
       name: data["name"],
       namenoext: data["namenoext"],
       original: data["original"],
-      originalname: data["originalname"],
+      originalname: data["original_name"],
       playlist: data["playlist"],
       status: data["status"],
       story: data["story"],
-      titel: data["titel"],
+      titel: data["title"],
       type: data["type"],
       url: data["url"],
     );
   }
 
-  static parser(data) {}
+ 
 }

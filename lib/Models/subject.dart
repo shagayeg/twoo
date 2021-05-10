@@ -29,5 +29,7 @@ class Subject {
      );
    }
 
-  static parser(data) {}
+  static parser(data) {
+
+  }
 }

@@ -18,13 +18,13 @@ class Author {
   factory Author.authorparser(Map<String, dynamic> data1) {
     return Author(
       name: data1["name"],
-      createat: data1["createat"],
-      story: data1["story"],
-      id: data1["id"],
+      createat: data1["create_at"],
+      story: data1["store"],
+      id: data1["_id"],
       body: data1["body"],
       type: data1["type"],
     );
   }
 
-  static parser(data) {}
+ 
 }
