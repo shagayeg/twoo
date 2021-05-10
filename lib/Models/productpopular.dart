@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:twoo/Models/author.dart';
@@ -7,9 +6,7 @@ import 'package:twoo/Models/place.dart';
 import 'package:twoo/Models/subject.dart';
 import 'package:twoo/Models/user.dart';
 
-
-class Productpopular{
-
+class Productpopular {
   String barcode;
   int count;
   String createdAt;
@@ -26,8 +23,8 @@ class Productpopular{
   // List<Subject>subjects;
   // List<File>files;
 
-  Productpopular({
-    this.barcode,
+  Productpopular(
+      {this.barcode,
       this.count,
       this.createdAt,
       this.createdAtConvert,
@@ -41,12 +38,11 @@ class Productpopular{
       // this.places,
       // this.subjects,
       // this.files,
-      this.name
-  });
+      this.name});
 
-   factory Productpopular.productpopularparser(Map<String, dynamic> data){
-     return Productpopular(
-       barcode: data["barcode"],
+  factory Productpopular.productpopularparser(Map<String, dynamic> data) {
+    return Productpopular(
+      barcode: data["barcode"],
       count: data["count"],
       createdAt: data["created_at"],
       createdAtConvert: data["created_at_convert"],
@@ -55,8 +51,8 @@ class Productpopular{
       discountamount: data["discount_amount"],
       discountedprice: data["education_social"],
       name: data["name"],
-    user: User.userparser(data["user"]),
-          
+      user: User.userparser(data["user"]),
+
       // variantvalues: data[""] == null
       //     ? []
       //     : data["variantvalues"]
@@ -81,6 +77,6 @@ class Productpopular{
       // files: data["files"]
       //     .map<File>((json) => File.filesparser(json))
       //     .toList(),
-     );
-   }
+    );
+  }
 }

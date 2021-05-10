@@ -1,4 +1,4 @@
-class Slider{
+class Slider {
   String id;
   String title;
   bool ispuplished;
@@ -17,7 +17,7 @@ class Slider{
     // this.links,
   });
 
-  factory Slider.parser(Map<String, dynamic> data){
+  factory Slider.parser(Map<String, dynamic> data) {
     return Slider(
       created: data["Created"],
       id: data["ID"],

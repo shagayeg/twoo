@@ -13,7 +13,6 @@ class News {
   String subtitle;
   String desc;
   Image image;
- 
 
   News({
     this.desc,
@@ -27,7 +26,6 @@ class News {
     this.id,
     this.name,
     this.image,
-  
   });
 
   factory News.parser(Map<String, dynamic> data) {

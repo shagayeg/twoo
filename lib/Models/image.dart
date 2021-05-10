@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class Image {
-
   String id;
   String owner;
   String poth;
@@ -28,26 +27,21 @@ class Image {
     this.owner,
     this.poth,
     this.title,
-
   });
-   factory Image.imageparser(Map<String, dynamic> data){
-     return Image(
-       checksum: data["CheckSum"],
-       createdat: data["CreatedAt"],
-       free: data["free"],
-       id: data["id"],
-       name: data["name"],
-       owner: data["owner"],
-       poth: data["poth"],
-       status: data["status"],
-       store: data["store"],
-       title: data["title"],
-       type: data["type"],
-       url: data["url"],
-     );
-   }
-
-  
-
- 
+  factory Image.imageparser(Map<String, dynamic> data) {
+    return Image(
+      checksum: data["CheckSum"],
+      createdat: data["CreatedAt"],
+      free: data["free"],
+      id: data["id"],
+      name: data["name"],
+      owner: data["owner"],
+      poth: data["poth"],
+      status: data["status"],
+      store: data["store"],
+      title: data["title"],
+      type: data["type"],
+      url: data["url"],
+    );
+  }
 }

@@ -51,6 +51,4 @@ class File {
       url: data["url"],
     );
   }
-
- 
 }
