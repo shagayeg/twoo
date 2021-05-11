@@ -58,7 +58,7 @@ class _Namecate extends State<Namecate> {
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         height: MediaQuery.of(context).size.height * 0.5,
-                        width: 250,
+                        width: MediaQuery.of(context).size.width,
                         color: Color(0xfff7c6bc),
                         child: Column(
                           children: [
@@ -66,7 +66,7 @@ class _Namecate extends State<Namecate> {
                                 height: MediaQuery.of(context).size.height*0.25,
                                 width: MediaQuery.of(context).size.width*0.90,
                                 color: Colors.red,
-                              
+                                child: Image.network("http://goftavard.ir"+category.products[index].firstimage),
                               ),
                               
                             // Image.network("http://goftavard.ir/media/"+category.image),

@@ -195,17 +195,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     //  color: Colors.red,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: sliderList.length,
+                      itemCount: sliderList[0].imageid.length,
                       itemBuilder: (context, index) {
+                        // print("https://bab.ir/media/" +
+                        //     sliderList[index].imageid.toString() + " : image id");
                         return Container(
                             height: MediaQuery.of(context).size.height * 0.20,
                             width: MediaQuery.of(context).size.width * 0.99,
                             child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                              
-                                child:Image.network(
+                                child: Image.network(
                                   "https://bab.ir/media/" +
-                                      sliderList[index].imageid.toString(),
+                                      sliderList[0].imageid[index].toString(),
                                   fit: BoxFit.fill,
                                 ),
                                 semanticContainer: true,
@@ -214,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 )));
                       },
                     ),
-                     ),
+                  ),
                   Container(
                     height: MediaQuery.of(context).size.height * 0.08,
                     width: MediaQuery.of(context).size.width * 0.99,
@@ -273,8 +274,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 new MaterialPageRoute(
                                     builder: (context) => new Namecate(
                                           category: data[index],
-                                          
-                                           
                                         )));
                           },
                           child: Column(
@@ -304,117 +303,116 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
-                    // child: PageView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   children: [
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrApy1xHTrFxQmJVuLJd0ErI4V9sHfGYZnFA&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_8agyMLfTHQIwb3hPbZcNSqGgRRPt8ezQQw&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIX_mcOlFIkavr7tIJY1VELZULTTOlHfEh1A&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmaklnUjZVWiQQMBd_vPLOTh7IbIXuGfN_6Q&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo8crUBfiMdviXIkfe9vOyp_yAWvMtp0mGFQ&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNcl2prPo-Z85BnvFVmtQeNHTSFcw9MKpiLQ&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //         height: MediaQuery.of(context).size.height * 0.20,
-                    //         width: MediaQuery.of(context).size.width * 0.99,
-                    //         child: Card(
-                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //             child: Image.network(
-                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtMBJ9uPfICWAvJtotkL7UqMesoe2WhwbVIw&usqp=CAU',
-                    //               fit: BoxFit.fill,
-                    //             ),
-                    //             semanticContainer: true,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0),
-                    //             ))),
-                    //     Container(
-                    //       height: MediaQuery.of(context).size.height * 0.20,
-                    //       width: MediaQuery.of(context).size.width * 0.99,
-                    //       child: Card(
-                    //           clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //           child: Image.network(
-                    //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ckkSyaDU4LV6ank_2Axecn5ASXlibQ7s-w&usqp=CAU',
-                    //             fit: BoxFit.fill,
-                    //           ),
-                    //           semanticContainer: true,
-                    //           shape: RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.circular(20.0),
-                    //           )),
-                    //     )
-                    //   ],
-                    // ),
-                  
+                  // child: PageView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: [
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrApy1xHTrFxQmJVuLJd0ErI4V9sHfGYZnFA&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_8agyMLfTHQIwb3hPbZcNSqGgRRPt8ezQQw&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIX_mcOlFIkavr7tIJY1VELZULTTOlHfEh1A&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmaklnUjZVWiQQMBd_vPLOTh7IbIXuGfN_6Q&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo8crUBfiMdviXIkfe9vOyp_yAWvMtp0mGFQ&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNcl2prPo-Z85BnvFVmtQeNHTSFcw9MKpiLQ&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //         height: MediaQuery.of(context).size.height * 0.20,
+                  //         width: MediaQuery.of(context).size.width * 0.99,
+                  //         child: Card(
+                  //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //             child: Image.network(
+                  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtMBJ9uPfICWAvJtotkL7UqMesoe2WhwbVIw&usqp=CAU',
+                  //               fit: BoxFit.fill,
+                  //             ),
+                  //             semanticContainer: true,
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20.0),
+                  //             ))),
+                  //     Container(
+                  //       height: MediaQuery.of(context).size.height * 0.20,
+                  //       width: MediaQuery.of(context).size.width * 0.99,
+                  //       child: Card(
+                  //           clipBehavior: Clip.antiAliasWithSaveLayer,
+                  //           child: Image.network(
+                  //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ckkSyaDU4LV6ank_2Axecn5ASXlibQ7s-w&usqp=CAU',
+                  //             fit: BoxFit.fill,
+                  //           ),
+                  //           semanticContainer: true,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(20.0),
+                  //           )),
+                  //     )
+                  //   ],
+                  // ),
 
                   SizedBox(
                     height: 10,
@@ -578,14 +576,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: InkWell(
                               onTap: () {},
                               child: InkWell(
-                                onTap: (){
-                                   setState(() {});
-                            Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => new Mynews(
-                                         
-                                        )));
+                                onTap: () {
+                                  setState(() {});
+                                  Navigator.push(
+                                      context,
+                                      new MaterialPageRoute(
+                                          builder: (context) => new Mynews()));
                                 },
                                 child: Container(
                                   child: Text("مشاهده همه"),
@@ -792,7 +788,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             left: 280,
                             child: Text(" فروشگاه ها",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w700,
                                 ))),
                         Positioned(
                           top: 60,
