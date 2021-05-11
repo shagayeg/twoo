@@ -17,8 +17,9 @@ class Productpopular {
   int discountedprice;
   String name;
   User user;
-  // List<Variantvalue>variantvalues;
-  // List<Author>authors;
+  String firstimage;
+  // Variantvalue variantvalues;
+   List<Author>authors;
   // List<Place>places;
   // List<Subject>subjects;
   // List<File>files;
@@ -34,11 +35,14 @@ class Productpopular {
       this.discountamount,
       this.user,
       // this.variantvalues,
-      // this.authors,
+      this.authors,
       // this.places,
       // this.subjects,
       // this.files,
-      this.name});
+      this.name,
+      this.firstimage
+      });
+      
 
   factory Productpopular.productpopularparser(Map<String, dynamic> data) {
     return Productpopular(
@@ -51,6 +55,7 @@ class Productpopular {
       discountamount: data["discount_amount"],
       discountedprice: data["discounted_price"],
       name: data["name"],
+      firstimage: data["first_image"],
       user: User.userparser(data["user"]),
 
       // variantvalues: data[""] == null
@@ -59,11 +64,11 @@ class Productpopular {
       //         .map<Variantvalue>(
       //             (json) => Variantvalue.variantvalueparser(json))
       //         .toList(),
-      //  authors: data["authors"] == null
-      //     ? []
-      //     : data["authors"]
-      //         .map<Author>((json) => Author.authorparser(json))
-      //         .toList(),
+       authors: data["authors"] == null
+           ? []
+          : data["authors"]
+              .map<Author>((json) => Author.authorparser(json))
+             .toList(),
       // places: data["places"] == null
       //     ? []
       //     : data["places"]

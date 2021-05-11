@@ -1,19 +1,25 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:twoo/API/HomePageAPI.dart';
+import 'package:twoo/Models/author.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
 import 'package:twoo/Models/documents.dart';
 import 'package:twoo/Models/mainnews.dart';
 import 'package:twoo/Models/news.dart';
+import 'package:twoo/Models/product.dart';
 import 'package:twoo/Models/productlatest.dart';
 import 'package:twoo/Models/productpopular.dart';
+import 'package:twoo/Models/sliders.dart';
+// import 'package:twoo/Models/sliders.dart';
 import 'package:twoo/Models/specialproducts.dart';
 import 'package:twoo/Models/store.dart';
 import 'package:twoo/Models/stores.dart';
 import 'package:twoo/UI/docgage.dart';
 import 'package:twoo/UI/mainnewspage.dart';
+import 'package:twoo/UI/mynews.dart';
 import 'package:twoo/UI/namecate.dart';
 import 'package:twoo/UI/specialpage.dart';
 import 'package:twoo/UI/storesss.dart';
@@ -40,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Store> data3 = new List();
   Mainnews mainNew = new Mainnews();
   List<Specialproduct> specialproductsList = new List();
-  List<Slider> sliderList = new List();
+  List<MySlider> sliderList = new List();
   List<News> newsList = new List();
   List<Productlatest> productlatestList = new List();
   List<Productpopular> productpopularList = new List();
@@ -78,11 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
           newsList =
               body["news"].map<News>((json) => News.parser(json)).toList();
           productlatestList = body["product_latest"]
-              .map<Productlatest>((json) => Productlatest.parser(json))
+              .map<Productlatest>(
+                  (json) => Productlatest.productlatestparser(json))
               .toList();
           productpopularList = body["product_popular"]
               .map<Productpopular>(
                   (json) => Productpopular.productpopularparser(json))
+              .toList();
+          sliderList = body["sliders"]
+              .map<MySlider>((json) => MySlider.parser(json))
               .toList();
         });
       }
@@ -92,9 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(backgroundColor: Colors.white),
       bottomNavigationBar: BottomNavigationBar(
         // currentIndex: 0,
         items: [
@@ -184,114 +192,64 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     height: MediaQuery.of(context).size.height * 0.20,
                     width: MediaQuery.of(context).size.width * 0.99,
-                    // color: Colors.red,
-                    child: PageView(
+                    //  color: Colors.red,
+                    child: ListView.builder(
                       scrollDirection: Axis.horizontal,
+                      itemCount: sliderList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                            height: MediaQuery.of(context).size.height * 0.20,
+                            width: MediaQuery.of(context).size.width * 0.99,
+                            child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                              
+                                child:Image.network(
+                                  "https://bab.ir/media/" +
+                                      sliderList[index].imageid.toString(),
+                                  fit: BoxFit.fill,
+                                ),
+                                semanticContainer: true,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                )));
+                      },
+                    ),
+                     ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.08,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    // color: Colors.red,
+                    child: Stack(
                       children: [
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
+                        Positioned(
+                            top: 20,
+                            left: 250,
+                            child: Text(" دسته بندی محصولات",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16))),
+
+                        // Positioned(
+                        //     top: 20,
+                        //     left: 10,
+                        //     child: InkWell(
+                        //       onTap: (){},
+                        //       child: Container(
+                        //         child: Text("مشاهده همه"),
+                        //         padding: EdgeInsets.all(5),
+                        //         height:
+                        //             MediaQuery.of(context).size.height * 0.04,
+                        //         width: MediaQuery.of(context).size.width * 0.20,
+                        //         color: Colors.grey[300],
+                        //       ),
+                        //     )),
+                        Positioned(
+                          top: 60,
+                          child: Container(
+                            height: 2,
                             width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrApy1xHTrFxQmJVuLJd0ErI4V9sHfGYZnFA&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_8agyMLfTHQIwb3hPbZcNSqGgRRPt8ezQQw&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIX_mcOlFIkavr7tIJY1VELZULTTOlHfEh1A&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmaklnUjZVWiQQMBd_vPLOTh7IbIXuGfN_6Q&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo8crUBfiMdviXIkfe9vOyp_yAWvMtp0mGFQ&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNcl2prPo-Z85BnvFVmtQeNHTSFcw9MKpiLQ&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtMBJ9uPfICWAvJtotkL7UqMesoe2WhwbVIw&usqp=CAU',
-                                  fit: BoxFit.fill,
-                                ),
-                                semanticContainer: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ))),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.20,
-                          width: MediaQuery.of(context).size.width * 0.99,
-                          child: Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ckkSyaDU4LV6ank_2Axecn5ASXlibQ7s-w&usqp=CAU',
-                                fit: BoxFit.fill,
-                              ),
-                              semanticContainer: true,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              )),
+                            color: Color(0xfff7c6bc),
+                          ),
                         )
                       ],
                     ),
@@ -300,31 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 20,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.40,
-                    width: MediaQuery.of(context).size.width * 0.99,
-                    color: Colors.pink[300],
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 2,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.30,
-                          width: MediaQuery.of(context).size.width * 0.90,
-                          color: Colors.purple[100],
-                          margin: EdgeInsets.all(10),
-                          child: Column(
-                            children: [Text(productpopularList[index].name)],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.10,
+                    height: MediaQuery.of(context).size.height * 0.12,
                     width: MediaQuery.of(context).size.width * 0.99,
                     // color: Colors.orange,
                     child: ListView.builder(
@@ -339,22 +273,28 @@ class _MyHomePageState extends State<MyHomePage> {
                                 new MaterialPageRoute(
                                     builder: (context) => new Namecate(
                                           category: data[index],
+                                           
                                         )));
                           },
                           child: Column(
                             children: [
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 22),
-                                height: 50,
-                                width: 50,
+                                height: 60,
+                                width: 60,
+                                padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color: Colors.red[400],
+                                  color: Colors.purple[200],
                                   borderRadius: BorderRadius.circular(80.0),
                                 ),
-                                child: Icon(
-                                  Icons.home,
-                                  color: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                    "http://goftavard.ir/media/" +
+                                        data[index].image,
+                                  ),
+                                  backgroundColor: Color(0xff7c6bc),
                                 ),
+                                // child: Image.network("http://goftavard.ir/media/"+data[index].image,fit: BoxFit.fill,),
                               ),
                               Text(data[index].name),
                             ],
@@ -363,27 +303,247 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+                    // child: PageView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   children: [
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrApy1xHTrFxQmJVuLJd0ErI4V9sHfGYZnFA&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_8agyMLfTHQIwb3hPbZcNSqGgRRPt8ezQQw&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIX_mcOlFIkavr7tIJY1VELZULTTOlHfEh1A&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmaklnUjZVWiQQMBd_vPLOTh7IbIXuGfN_6Q&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo8crUBfiMdviXIkfe9vOyp_yAWvMtp0mGFQ&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNcl2prPo-Z85BnvFVmtQeNHTSFcw9MKpiLQ&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //         height: MediaQuery.of(context).size.height * 0.20,
+                    //         width: MediaQuery.of(context).size.width * 0.99,
+                    //         child: Card(
+                    //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //             child: Image.network(
+                    //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtMBJ9uPfICWAvJtotkL7UqMesoe2WhwbVIw&usqp=CAU',
+                    //               fit: BoxFit.fill,
+                    //             ),
+                    //             semanticContainer: true,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0),
+                    //             ))),
+                    //     Container(
+                    //       height: MediaQuery.of(context).size.height * 0.20,
+                    //       width: MediaQuery.of(context).size.width * 0.99,
+                    //       child: Card(
+                    //           clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //           child: Image.network(
+                    //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ckkSyaDU4LV6ank_2Axecn5ASXlibQ7s-w&usqp=CAU',
+                    //             fit: BoxFit.fill,
+                    //           ),
+                    //           semanticContainer: true,
+                    //           shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(20.0),
+                    //           )),
+                    //     )
+                    //   ],
+                    // ),
+                  
+
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.40,
+                    height: MediaQuery.of(context).size.height * 0.08,
                     width: MediaQuery.of(context).size.width * 0.99,
-                    color: Colors.pink[300],
+                    // color: Colors.red,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            top: 20,
+                            left: 280,
+                            child: Text("محصولات محبوب",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16))),
+                        Positioned(
+                            top: 20,
+                            left: 10,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                child: Text("مشاهده همه"),
+                                padding: EdgeInsets.all(5),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04,
+                                width: MediaQuery.of(context).size.width * 0.20,
+                                color: Colors.grey[300],
+                              ),
+                            )),
+                        Positioned(
+                          top: 60,
+                          child: Container(
+                            height: 2,
+                            width: MediaQuery.of(context).size.width * 0.99,
+                            color: Color(0xfff7c6bc),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.60,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    // color: Colors.pink[300],
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: newsList.length,
+                      itemCount: productpopularList.length,
                       itemBuilder: (context, index) {
                         return Container(
                           height: MediaQuery.of(context).size.height * 0.30,
-                          width: MediaQuery.of(context).size.width * 0.90,
-                          color: Colors.purple[100],
+                          width: MediaQuery.of(context).size.width * 0.99,
+                          // color: Colors.grey[200],
                           margin: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color(0xfff7c6bc)),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(newsList[index].id),
-                              Text(newsList[index].name),
-                              Text(newsList[index].subtitle),
-                              Text(newsList[index].ismain.toString()),
-                              Text(newsList[index].image.type.toString()),
-                              Text(newsList[index].image.free.toString()),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                height: 250,
+                                width: MediaQuery.of(context).size.width * 85,
+                                // color: Colors.red,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Image.network(
+                                  "http://goftavard.ir" +
+                                      productpopularList[index].defaultimage,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.26,
+                                width: MediaQuery.of(context).size.width * 0.99,
+                                // color: Colors.red,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      left: 300,
+                                      top: 20,
+                                      child: Text(
+                                        " نام :" +
+                                            productpopularList[index]
+                                                .user
+                                                .fullname,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 10,
+                                      top: 50,
+                                      child: Text(
+                                        productpopularList[index].name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                              // Stack(
+                              //   children: [
+                              //     Positioned(
+                              //       left: 10,
+                              //       // height: 20,width: 200,
+                              //       // top: 100,
+
+                              //       child:
+                              // Text(" نام :" +
+                              //     productpopularList[index].user.fullname),
+                              //     )
+                              //   ],
+                              // ),
+
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // Text(productpopularList[index].name),
+                              // Text(productpopularList[index].createdAt)
                             ],
                           ),
                         );
@@ -394,28 +554,274 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 20,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.40,
+                    height: MediaQuery.of(context).size.height * 0.08,
                     width: MediaQuery.of(context).size.width * 0.99,
-                    color: Colors.pink[300],
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 2,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.30,
-                          width: MediaQuery.of(context).size.width * 0.90,
-                          color: Colors.purple[100],
-                          margin: EdgeInsets.all(10),
-                          child: Column(
-                            children: [Text(productlatestList[index].name)],
+                    // color: Colors.red,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 20,
+                          left: 350,
+                          child: Icon(Icons.now_widgets_outlined),
+                        ),
+                        Positioned(
+                            top: 20,
+                            left: 300,
+                            child: Text(" اخبار",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16))),
+                        Positioned(
+                            top: 20,
+                            left: 10,
+                            child: InkWell(
+                              onTap: () {},
+                              child: InkWell(
+                                onTap: (){
+                                   setState(() {});
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) => new Mynews(
+                                         
+                                        )));
+                                },
+                                child: Container(
+                                  child: Text("مشاهده همه"),
+                                  padding: EdgeInsets.all(5),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.20,
+                                  color: Colors.grey[300],
+                                ),
+                              ),
+                            )),
+                        Positioned(
+                          top: 60,
+                          child: Container(
+                            height: 2,
+                            width: MediaQuery.of(context).size.width * 0.99,
+                            color: Color(0xfff7c6bc),
                           ),
-                        );
-                      },
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.60,
+                      width: MediaQuery.of(context).size.width * 0.99,
+                      margin: EdgeInsets.all(10),
+                      // decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(20),
+                      //     color: Color(0xfff7c6bc)),
+                      // color: Colors.pink[300],
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: newsList.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0xfff7c6bc)),
+                            height: MediaQuery.of(context).size.height * 0.20,
+                            width: MediaQuery.of(context).size.width * 0.90,
+                            // color: Color(0xfff7c6bc),
+                            margin: EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.20,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.99,
+                                  margin: EdgeInsets.all(10),
+                                  // color: Colors.red,
+                                  child: Image.network(
+                                    "http://goftavard.ir/media/" +
+                                        newsList[index].image.name,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                // Text(newsList[index].id),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.99,
+                                  // color: Colors.grey,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                          top: 10,
+                                          left: 330,
+                                          child: Icon(
+                                            Icons.access_time,
+                                            color: Colors.grey[700],
+                                          )),
+                                      Positioned(
+                                        top: 10,
+                                        left: 255,
+                                        child: Text("اخرین بازدید"),
+                                      )
+                                    ],
+                                  ),
+                                ),
+
+                                Text(
+                                  newsList[index].name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 15),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text(newsList[index].subtitle)
+                                // Text(newsList[index].subtitle),
+                                // Text(newsList[index].ismain.toString()),
+
+                                // Text(newsList[index].image.free.toString()),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.08,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    // color: Colors.red,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            top: 20,
+                            left: 280,
+                            child: Text(" آخرین محصولات",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16))),
+                        Positioned(
+                            top: 20,
+                            left: 10,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                child: Text("مشاهده همه"),
+                                padding: EdgeInsets.all(5),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04,
+                                width: MediaQuery.of(context).size.width * 0.20,
+                                color: Colors.grey[300],
+                              ),
+                            )),
+                        Positioned(
+                          top: 60,
+                          child: Container(
+                            height: 2,
+                            width: MediaQuery.of(context).size.width * 0.99,
+                            color: Color(0xfff7c6bc),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.50,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    //  decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(20),
+                    //     color: Color(0xfff7c6bc)),
+                    // color: Colors.pink[300],
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: productlatestList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color(0xfff7c6bc)),
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.90,
+
+                          // color: Colors.purple[100],
+                          margin: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.20,
+                                width: MediaQuery.of(context).size.width * 0.99,
+                                child: Image.network(
+                                  "http://goftavard.ir" +
+                                      productlatestList[index].firstimage,
+                                  fit: BoxFit.fill,
+                                ),
+                                // color: Colors.red,
+                              ),
+                              Text(productlatestList[index].name)
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.08,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    // color: Colors.red,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            top: 20,
+                            left: 280,
+                            child: Text(" فروشگاه ها",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16))),
+                        // Positioned(
+                        //     top: 20,
+                        //     left: 10,
+                        //     child: InkWell(
+                        //       onTap: () {},
+                        //       child: Container(
+                        //         child: Text("مشاهده همه"),
+                        //         padding: EdgeInsets.all(5),
+                        //         height:
+                        //             MediaQuery.of(context).size.height * 0.04,
+                        //         width: MediaQuery.of(context).size.width * 0.20,
+                        //         color: Colors.grey[300],
+                        //       ),
+                        //     )),
+                        Positioned(
+                          top: 60,
+                          child: Container(
+                            height: 2,
+                            width: MediaQuery.of(context).size.width * 0.99,
+                            color: Color(0xfff7c6bc),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+
                   Container(
                     height: MediaQuery.of(context).size.height * 0.15,
                     width: MediaQuery.of(context).size.width * 0.99,

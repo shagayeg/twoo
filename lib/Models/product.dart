@@ -13,12 +13,14 @@ class Product {
   String createdAt;
   String createdAtConvert;
   String createdAtMoment;
-  List<Author> authors;
-  List<File> files;
-  List<User> user;
-  List<Subject> subjects;
-  List<Place> places;
-  List<Variantvalue> variantvalues;
+  String defaultimage;
+  String firstimage;
+  // List<Author> authors;
+  // List<File> files;
+  // List<User> user;
+  // List<Subject> subjects;
+  // List<Place> places;
+  // List<Variantvalue> variantvalues;
 
   Product(
       {this.barcode,
@@ -26,12 +28,15 @@ class Product {
       this.createdAt,
       this.createdAtConvert,
       this.createdAtMoment,
-      this.authors,
-      this.files,
-      this.user,
-      this.subjects,
-      this.places,
-      this.variantvalues});
+      // this.authors,
+      // this.files,
+      // this.user,
+      // this.subjects,
+      // this.places,
+      this.defaultimage,
+      this.firstimage,
+      // this.variantvalues
+      });
 
   factory Product.parser(Map<String, dynamic> productList) {
     return Product(
@@ -40,37 +45,39 @@ class Product {
       createdAt: productList["created_at"],
       createdAtConvert: productList["created_at_convert"],
       createdAtMoment: productList["created_at_moment"],
-      authors: productList["authors"] == null
-          ? []
-          : productList["authors"]
-              .map<Author>((json) => Author.authorparser(json))
-              .toList(),
-      files: productList["files"] == null
-          ? []
-          : productList["files"]
-              .map<File>((json) => File.filesparser(json))
-              .toList(),
-      user: productList["users"] == null
-          ? []
-          : productList["users"]
-              .map<User>((json) => User.userparser(json))
-              .toList(),
-      subjects: productList["subjects"] == null
-          ? []
-          : productList["subjects"]
-              .map<Subject>((json) => Subject.subjectsparser(json))
-              .toList(),
-      places: productList["places"] == null
-          ? []
-          : productList["places"]
-              .map<Place>((json) => Place.placesparser(json))
-              .toList(),
-      variantvalues: productList["users"] == null
-          ? []
-          : productList["variantvalues"]
-              .map<Variantvalue>(
-                  (json) => Variantvalue.variantvalueparser(json))
-              .toList(),
+      defaultimage:  productList["default_image"],
+      firstimage: productList["first_image"]
+      // authors: productList["authors"] == null
+      //     ? []
+      //     : productList["authors"]
+      //         .map<Author>((json) => Author.authorparser(json))
+      //         .toList(),
+      // files: productList["files"] == null
+      //     ? []
+      //     : productList["files"]
+      //         .map<File>((json) => File.filesparser(json))
+      //         .toList(),
+      // user: productList["users"] == null
+      //     ? []
+      //     : productList["users"]
+      //         .map<User>((json) => User.userparser(json))
+      //         .toList(),
+      // subjects: productList["subjects"] == null
+      //     ? []
+      //     : productList["subjects"]
+      //         .map<Subject>((json) => Subject.subjectsparser(json))
+      //         .toList(),
+      // places: productList["places"] == null
+      //     ? []
+      //     : productList["places"]
+      //         .map<Place>((json) => Place.placesparser(json))
+      //         .toList(),
+      // variantvalues: productList["users"] == null
+      //     ? []
+      //     : productList["variantvalues"]
+      //         .map<Variantvalue>(
+      //             (json) => Variantvalue.variantvalueparser(json))
+      //         .toList(),
     );
   }
 }

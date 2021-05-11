@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:twoo/Models/author.dart';
 import 'package:twoo/Models/place.dart';
 import 'package:twoo/Models/subject.dart';
@@ -18,7 +17,8 @@ class Productlatest {
   List<Place> places;
   List<Subject> subjects;
   String name;
-
+  String defaultimage;
+  String firstimage; 
   Productlatest({
     this.count,
     this.barcode,
@@ -30,9 +30,11 @@ class Productlatest {
     this.authors,
     this.places,
     this.subjects,
-    this.name
+    this.name,
+    this.defaultimage,
+    this.firstimage,
   });
-  factory Productlatest.parser(Map<String, dynamic> data) {
+  factory Productlatest.productlatestparser(Map<String, dynamic> data) {
     return Productlatest(
       barcode: data["barcode"],
       name: data["name"],
@@ -40,24 +42,24 @@ class Productlatest {
       createdAt: data["created_at"],
       createdAtConvert: data["created_at_convert"],
       createdAtMoment: data["created_at_moment"],
-      
-     
+      defaultimage: data["default_image"],
       user: User.userparser(data["user"]),
-      authors: data["authors"] == null
-          ? []
-          : data["authors"]
-              .map<Author>((json) => Author.authorparser(json))
-              .toList(),
-      places: data["places"] == null
-          ? []
-          : data["places"]
-              .map<Place>((json) => Place.placesparser(json))
-              .toList(),
-      subjects: data["subjects"] == null
-          ? []
-          : data["subjects"]
-              .map<Subject>((json) => Subject.subjectsparser(json))
-              .toList(),
+      firstimage: data["first_image"],
+      // authors: data["authors"] == null
+      //     ? []
+      //     : data["authors"]
+      //         .map<Author>((json) => Author.authorparser(json))
+      //         .toList(),
+      // places: data["places"] == null
+      //     ? []
+      //     : data["places"]
+      //         .map<Place>((json) => Place.placesparser(json))
+      //         .toList(),
+      // subjects: data["subjects"] == null
+      //     ? []
+      //     : data["subjects"]
+      //         .map<Subject>((json) => Subject.subjectsparser(json))
+      //         .toList(),
     );
   }
 }

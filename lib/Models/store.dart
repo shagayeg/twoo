@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:twoo/Models/city.dart';
 import 'package:twoo/Models/delivery.dart';
 import 'package:twoo/Models/domains.dart';
 import 'package:twoo/Models/homepage.dart';
@@ -39,6 +40,7 @@ class Store {
   Paymentfacility paymentfacility;
   Socials socials;
   State state;
+  City city;
 
   Store({
     this.createdat,
@@ -67,6 +69,7 @@ class Store {
     this.paymentfacility,
     this.socials,
     this.state,
+    this.city,
   });
 
   factory Store.parser(Map<String, dynamic> data3) {
@@ -87,6 +90,7 @@ class Store {
       enamadmetaid: data3["enamadmetaid"],
       metakeyword: data3["metakeyword"],
       delivery: Delivery.parser(data3["delivery"]),
+      city:  City.parser(data3["city"]),
       domains: data3["domains"] == null
           ? []
           : data3["domains"]

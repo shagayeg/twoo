@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,13 +8,14 @@ class Storesss extends StatefulWidget {
 
   const Storesss({Key key, this.sto}) : super(key: key);
 
-  @override 
+  @override
   State<StatefulWidget> createState() {
-    return  _Storesss(sto); 
+    return _Storesss(sto);
   }
 }
+
 // ignore: unused_element
-class _Storesss extends State<Storesss>{
+class _Storesss extends State<Storesss> {
   final Stores sto;
 
   _Storesss(this.sto);
@@ -24,46 +23,58 @@ class _Storesss extends State<Storesss>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         appBar: AppBar(
-        backgroundColor: Colors.grey[300],
-      ),
-      body: SingleChildScrollView(child: 
-      Column(children: [
-        Container(
-            height: MediaQuery.of(context).size.height * 0.99,
+        appBar: AppBar(
+          backgroundColor: Colors.grey[300],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.60,
                 width: MediaQuery.of(context).size.width * 0.99,
-                margin: EdgeInsets.symmetric(horizontal: 2),
+                
                 // color: Colors.green,
                 child: ListView.builder(
-                  itemCount:sto.toString().length,
-                  itemBuilder: (context,index){
-                    return Card(
-                   
-                      semanticContainer: true,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      elevation: 5,
-                      margin: EdgeInsets.all(10),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        width: 250,
-                        color: Colors.pink[200],
-                        child: Column(
-                          children: [
-                            Text(sto.store.toString()),
-                            Text(sto.domain),
-                            Text(sto.prouctcount.toString())
-                           ] )));
+                  scrollDirection: Axis.horizontal,
+                  itemCount: sto.toString().length,
+                  itemBuilder: (context, index) {
+                    return 
+                    //     semanticContainer: true,
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(20.0),
+                    //     ),
+                    //     elevation: 5,
+                    //     margin: EdgeInsets.all(10),
+                         Container(
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            height: MediaQuery.of(context).size.height * 0.5,
+                            margin: EdgeInsets.all(10),
+                            width: 250,
+                            color: Colors.pink[200],
+                            child: Column(children: [
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.20,
+                                width: MediaQuery.of(context).size.width * 0.99,
+                                // color: Colors.purple,
+                               child:
+                            Image.network("http://goftavard.ir"+sto.store.owner.avatar,fit: BoxFit.fill,),
+                              
+                              
+                           ),
+                         
+                              Text(sto.store.city.name),
+                              Text(sto.store.owner.fullname),
+                              Text(sto.store.owner.cellphone),
+                                Text(sto.store.email),
+                             
+                            ]));
+                            
                   },
                 ),
-        )
-      ],)
-      ,)
-    );
+              )
+            ],
+          ),
+        ));
   }
-
 }
-
-
