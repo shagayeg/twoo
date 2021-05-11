@@ -28,11 +28,11 @@ class Store {
   bool displaybabcopyright;
   String email;
   int enamadmetaid;
-  List<String> metakeyword;
+  // List<String> metakeyword;
   Delivery delivery;
-  List<Domains> domains;
-  List<Homepage> homepage;
-  List<Instagramauth> instagramauth;
+  // List<Domains> domains;
+  // List<Homepage> homepage;
+  // List<Instagramauth> instagramauth;
   Irankish irankish;
   Mellat mellat;
   Owner owner;
@@ -41,6 +41,8 @@ class Store {
   Socials socials;
   State state;
   City city;
+  String name;
+  String firstname;
 
   Store({
     this.createdat,
@@ -58,18 +60,20 @@ class Store {
     this.displaybabcopyright,
     this.enamadmetaid,
     this.delivery,
-    this.domains,
-    this.homepage,
-    this.instagramauth,
+    // this.domains,
+    // this.homepage,
+    // this.instagramauth,
     this.irankish,
     this.mellat,
-    this.metakeyword,
+    // this.metakeyword,
     this.owner,
     this.payment,
     this.paymentfacility,
     this.socials,
     this.state,
+    this.name,
     this.city,
+    this.firstname,
   });
 
   factory Store.parser(Map<String, dynamic> data3) {
@@ -87,25 +91,27 @@ class Store {
       description: data3["description"],
       displaybabcopyright: data3["displaybabcopyright"],
       email: data3["email"],
+      firstname: data3["first_image"],
       enamadmetaid: data3["enamadmetaid"],
-      metakeyword: data3["metakeyword"],
+      // metakeyword: data3["metakeyword"],
+       name: data3["name"],
       delivery: Delivery.parser(data3["delivery"]),
       city:  City.parser(data3["city"]),
-      domains: data3["domains"] == null
-          ? []
-          : data3["domains"]
-              .map<Domains>((json) => Domains.parser(json))
-              .toList(),
-      homepage: data3["homepage"] == null
-          ? []
-          : data3["homepage"]
-              .map<Homepage>((json) => Homepage.parser(json))
-              .toList(),
-      instagramauth: data3["instagramauth"] == null
-          ? []
-          : data3["instagramauth"]
-              .map<Instagramauth>((json) => Instagramauth.parser(json))
-              .toList(),
+      // // domains: data3["domains"] == null
+      //     ? []
+      //     : data3["domains"]
+      //         .map<Domains>((json) => Domains.parser(json))
+      //         .toList(),
+      // homepage: data3["homepage"] == null
+      //     ? []
+      //     : data3["homepage"]
+      //         .map<Homepage>((json) => Homepage.parser(json))
+      //         .toList(),
+      // instagramauth: data3["instagramauth"] == null
+      //     ? []
+      //     : data3["instagramauth"]
+      //         .map<Instagramauth>((json) => Instagramauth.parser(json))
+      //         .toList(),
       irankish: Irankish.parser(data3["irankish"]),
       mellat: Mellat.parser(data3["mellat"]),
       owner: Owner.parser(data3["owner"]),

@@ -29,47 +29,59 @@ class _Storesss extends State<Storesss> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+             
+
+                // color: Colors.green,
+              
               Container(
-                height: MediaQuery.of(context).size.height * 0.60,
+                height: MediaQuery.of(context).size.height * 0.99,
                 width: MediaQuery.of(context).size.width * 0.99,
-                
+
                 // color: Colors.green,
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.vertical,
                   itemCount: sto.toString().length,
                   itemBuilder: (context, index) {
-                    return 
-                    //     semanticContainer: true,
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(20.0),
-                    //     ),
-                    //     elevation: 5,
-                    //     margin: EdgeInsets.all(10),
-                         Container(
-                            padding: EdgeInsets.symmetric(vertical: 20),
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            margin: EdgeInsets.all(10),
-                            width: 250,
-                            color: Colors.pink[200],
-                            child: Column(children: [
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.20,
-                                width: MediaQuery.of(context).size.width * 0.99,
-                                // color: Colors.purple,
-                               child:
-                            Image.network("http://goftavard.ir"+sto.store.owner.avatar,fit: BoxFit.fill,),
-                              
-                              
-                           ),
-                         
-                              Text(sto.store.city.name),
-                              Text(sto.store.owner.fullname),
-                              Text(sto.store.owner.cellphone),
-                                Text(sto.store.email),
-                             
-                            ]));
-                            
+                    return Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Color(0xfff7c6bc)),
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        margin: EdgeInsets.all(10),
+                        width: 250,
+                        // color: Colors.pink[200],
+                        child: Column(children: [
+                          Container(
+                              height: MediaQuery.of(context).size.height*0.25,
+                                width: MediaQuery.of(context).size.width*0.90,
+                                color: Colors.red,
+                                child: Image.network("http://goftavard.ir"+sto.store.owner.avatar,fit: BoxFit.fill,),
+
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 210,top: 20),
+                            height: MediaQuery.of(context).size.height*0.08,
+                          width: MediaQuery.of(context).size.width*0.90,
+                          // color: Colors.teal,
+                          child: Text(sto.store.name,style: TextStyle(fontWeight: FontWeight.w800,fontSize: 20),),
+                          )
+                          //     Container(
+                          //       height:
+                          //           MediaQuery.of(context).size.height * 0.20,
+                          //       width: MediaQuery.of(context).size.width * 0.99,
+                          //       // color: Colors.purple,
+                          //      child:
+                          //   Image.network("http://goftavard.ir"+sto.store.owner.avatar,fit: BoxFit.fill,),
+
+                          //  ),
+
+                          //     Text(sto.store.city.name),
+                          //     Text(sto.store.name),
+                          //     Text(sto.store.owner.fullname),
+                          //     Text(sto.store.owner.cellphone),
+                          //       Text(sto.store.email),
+                        ]));
                   },
                 ),
               )

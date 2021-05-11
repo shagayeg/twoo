@@ -273,6 +273,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 new MaterialPageRoute(
                                     builder: (context) => new Namecate(
                                           category: data[index],
+                                          
                                            
                                         )));
                           },
@@ -792,21 +793,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Text(" فروشگاه ها",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 16))),
-                        // Positioned(
-                        //     top: 20,
-                        //     left: 10,
-                        //     child: InkWell(
-                        //       onTap: () {},
-                        //       child: Container(
-                        //         child: Text("مشاهده همه"),
-                        //         padding: EdgeInsets.all(5),
-                        //         height:
-                        //             MediaQuery.of(context).size.height * 0.04,
-                        //         width: MediaQuery.of(context).size.width * 0.20,
-                        //         color: Colors.grey[300],
-                        //       ),
-                        //     )),
+                                ))),
                         Positioned(
                           top: 60,
                           child: Container(
