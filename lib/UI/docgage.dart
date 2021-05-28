@@ -34,7 +34,7 @@ class _Docpage extends State<Docpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[300],
+       backgroundColor: Colors.white
       ),
       body: SingleChildScrollView(
         child: Container(

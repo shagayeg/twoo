@@ -8,45 +8,57 @@ import 'package:twoo/Models/user.dart';
 import 'package:twoo/Models/variantvalue.dart';
 
 class Product {
-  String barcode;
-  int count;
-  String createdAt;
+ 
   String createdAtConvert;
   String createdAtMoment;
-  String defaultimage;
+  String description;
+  // String defaultimage;
   String firstimage;
+  String name;
+  String fullname;
   // List<Author> authors;
   // List<File> files;
-  // List<User> user;
+   User user;
+   int price;
   // List<Subject> subjects;
   // List<Place> places;
+  //  int discountedprice;
   // List<Variantvalue> variantvalues;
 
   Product(
-      {this.barcode,
-      this.count,
-      this.createdAt,
+      {
       this.createdAtConvert,
       this.createdAtMoment,
       // this.authors,
       // this.files,
-      // this.user,
+      this.user,
       // this.subjects,
       // this.places,
-      this.defaultimage,
+      // this.defaultimage,
       this.firstimage,
+      this.name,
+       this.fullname,
+      //  this.discountedprice,
+       this.price, 
+       this.description,
       // this.variantvalues
       });
 
   factory Product.parser(Map<String, dynamic> productList) {
     return Product(
-      barcode: productList["barcode"],
-      count: productList["count"],
-      createdAt: productList["created_at"],
+      // barcode: productList["barcode"],
+      // count: productList["count"],
+      // createdAt: productList["created_at"],
       createdAtConvert: productList["created_at_convert"],
       createdAtMoment: productList["created_at_moment"],
-      defaultimage:  productList["default_image"],
-      firstimage: productList["first_image"]
+      // defaultimage:  productList["default_image"],
+      firstimage: productList["first_image"],
+      name: productList["name"],
+      description: productList["description"],
+      fullname: productList["fullname"],
+      // discountedprice: productList["discounted_price"],
+      price: productList["price"],
+      user: User.userparser(productList["user"]),
       // authors: productList["authors"] == null
       //     ? []
       //     : productList["authors"]

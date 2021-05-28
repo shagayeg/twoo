@@ -1,6 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:twoo/Models/province.dart';
-
 class City {
   String id;
   String name;

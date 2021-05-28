@@ -39,7 +39,7 @@ class Store {
   Payment payment;
   Paymentfacility paymentfacility;
   Socials socials;
-  State state;
+ 
   City city;
   String name;
   String firstname;
@@ -70,7 +70,7 @@ class Store {
     this.payment,
     this.paymentfacility,
     this.socials,
-    this.state,
+   
     this.name,
     this.city,
     this.firstname,
@@ -118,7 +118,7 @@ class Store {
       payment: Payment.parser(data3["payment"]),
       paymentfacility: Paymentfacility.parser(data3["payment_facility"]),
       socials: Socials.parser(data3["socials"]),
-      state: State.parser(data3["stats"]),
+     
     );
   }
 }

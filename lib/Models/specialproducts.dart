@@ -6,68 +6,70 @@ import 'package:twoo/Models/user.dart';
 import 'package:twoo/Models/variantvalue.dart';
 
 class Specialproduct {
-  String barcode;
   String name;
+  String description;
   int price;
-  int count;
-  String createdAt;
-  String createdAtConvert;
+  // int count;
+  // String createdAt;
+  // String createdAtConvert;
   String createdAtMoment;
-  String defaultimage;
+  // String defaultimage;
   int discountamount;
-  int discountedprice;
-  List<Author> authors;
-  List<Place> places;
-  List<Subject> subjects;
+  // int discountedprice;
+  // int discountkind;
+  // List<Author> authors;
+  // List<Place> places;
+  // List<Subject> subjects;
   User user;
-  List<Variantvalue> variantvalues;
-  List<File> files;
+  // List<Variantvalue> variantvalues;
+  // List<File> files;
   String firstimage;
 
   Specialproduct({
-    this.barcode,
-    this.count,
-    this.createdAt,
-    this.createdAtConvert,
+    // this.count,
+    // this.createdAt,
+    // this.createdAtConvert,
     this.createdAtMoment,
-    this.defaultimage,
+    // this.defaultimage,
     this.discountamount,
-    this.discountedprice,
-    this.authors,
-    this.places,
-    this.subjects,
+    // this.discountedprice,
+    // this.authors,
+    // this.places,
+    // this.subjects,
     this.user,
-    this.variantvalues,
-    this.files,
+    // this.variantvalues,
+    // this.files,
     this.name,
     this.price,
     this.firstimage,
+    // this.discountkind,
+    this.description
   });
 
   factory Specialproduct.parser(Map<String, dynamic> data) {
     return Specialproduct(
-      barcode: data["barcode"],
-      count: data["count"],
-      createdAt: data["created_at"],
-      createdAtConvert: data["created_at_convert"],
+      // count: data["count"],
+      // createdAt: data["created_at"],
+      // createdAtConvert: data["created_at_convert"],
       createdAtMoment: data["created_at_moment"],
-      defaultimage: data["defaultimage"],
-      discountamount: data["discounted_amount"],
-      discountedprice: data["discountedprice"],
+      // defaultimage: data["default_image"],
+      discountamount: data["discount_amount"],
+      // discountedprice: data["discounted_price"],
       name: data["name"],
       price: data["price"],
+      description: data["description"],
       firstimage: data["first_image"],
-      // authors: Author.authorparser(data["authors"]),
+      // discountkind: data["discount_kind"],
       // files: File.filesparser(data["file"]),
-      places: Place.parser(data["places"]),
-      subjects: Subject.parser(data["subjects"]),
+      // places: Place.parser(data["places"]),
+      // subjects: Subject.parser(data["subjects"]),
       user: User.userparser(data["user"]),
-      variantvalues: Variantvalue.parser(data["variantvalues"]),
-      authors: data["authors"] == null
-          ? []
-          : data["authors"]
-              .map<Author>((json) => Author.authorparser(json))
-              .toList(),
+      // variantvalues: Variantvalue.parser(data["variantvalues"]),
+      // authors: data["authors"] == null
+          // ? []
+          // : data["authors"]
+          //     .map<Author>((json) => Author.authorparser(json))
+              // .toList(),
       // places: data["places"] == null
       //     ? []
       //     : data["places"]
@@ -87,9 +89,9 @@ class Specialproduct {
       //         .map<Variantvalue>(
       //             (json) => Variantvalue.variantvalueparser(json))
       //         .toList(),
-      files: data["files"] == null
-          ? []
-          : data["files"].map<File>((json) => File.filesparser(json)).toList(),
+      // files: data["files"] == null
+      //     ? []
+      //     : data["files"].map<File>((json) => File.filesparser(json)).toList(),
     );
   }
 }

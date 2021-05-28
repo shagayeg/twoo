@@ -22,7 +22,7 @@ class _Mainnewspage extends State<Mainnewspage>{
   Widget build(BuildContext context) {
     return Scaffold(
          appBar: AppBar(
-        backgroundColor: Colors.grey[300],
+       backgroundColor: Colors.white
       ),
       body: SingleChildScrollView( 
      

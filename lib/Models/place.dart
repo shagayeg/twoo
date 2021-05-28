@@ -28,7 +28,7 @@ class Place {
      );
    }
 
-  static parser(data) {}
+  
 
  
 }

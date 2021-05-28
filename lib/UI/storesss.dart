@@ -24,15 +24,24 @@ class _Storesss extends State<Storesss> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Colors.white,
+          actions: [
+            Text(
+              sto.store.name,
+              style: TextStyle(
+                  color: Colors.grey[700],
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20),
+            ),
+            Padding(padding: EdgeInsets.all(20)),
+          ],
+        
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-             
+              // color: Colors.green,
 
-                // color: Colors.green,
-              
               Container(
                 height: MediaQuery.of(context).size.height * 0.99,
                 width: MediaQuery.of(context).size.width * 0.99,
@@ -47,40 +56,12 @@ class _Storesss extends State<Storesss> {
                             borderRadius: BorderRadius.circular(20),
                             color: Color(0xfff7c6bc)),
                         padding: EdgeInsets.symmetric(vertical: 20),
-                        height: MediaQuery.of(context).size.height * 0.5,
+                        height: MediaQuery.of(context).size.height * 0.60,
                         margin: EdgeInsets.all(10),
                         width: 250,
                         // color: Colors.pink[200],
                         child: Column(children: [
-                          Container(
-                              height: MediaQuery.of(context).size.height*0.25,
-                                width: MediaQuery.of(context).size.width*0.90,
-                                color: Colors.red,
-                                child: Image.network("http://goftavard.ir"+sto.store.owner.avatar,fit: BoxFit.fill,),
-
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 210,top: 20),
-                            height: MediaQuery.of(context).size.height*0.08,
-                          width: MediaQuery.of(context).size.width*0.90,
-                          // color: Colors.teal,
-                          child: Text(sto.store.name,style: TextStyle(fontWeight: FontWeight.w800,fontSize: 20),),
-                          )
-                          //     Container(
-                          //       height:
-                          //           MediaQuery.of(context).size.height * 0.20,
-                          //       width: MediaQuery.of(context).size.width * 0.99,
-                          //       // color: Colors.purple,
-                          //      child:
-                          //   Image.network("http://goftavard.ir"+sto.store.owner.avatar,fit: BoxFit.fill,),
-
-                          //  ),
-
-                          //     Text(sto.store.city.name),
-                          //     Text(sto.store.name),
-                          //     Text(sto.store.owner.fullname),
-                          //     Text(sto.store.owner.cellphone),
-                          //       Text(sto.store.email),
+                          
                         ]));
                   },
                 ),

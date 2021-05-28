@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/html_parser.dart';
+import 'package:flutter_html/style.dart';
 import 'package:twoo/Models/news.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class Mynews extends StatefulWidget {
   final News news;
@@ -22,32 +25,45 @@ class _Mynews extends State<Mynews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.white
       ),
-      body: SingleChildScrollView(child: 
-      Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height*0.10,
-            width: MediaQuery.of(context).size.width*0.99,
-            color: Colors.grey,
-             child: Stack(
-                      children: [
-                        Positioned(
-                          top: 20,
-                          left: 350,
-                          child: Icon(Icons.now_widgets_outlined),
-                        ),
-                        Positioned(
-                            top: 20,
-                            left: 300,
-                            child: Text(" اخبار",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16))),
-          ]  ))
-        ],
-      )
-      ,),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 10, left: 8, right: 8),
+              padding: EdgeInsets.only(left: 15, right: 10, top: 10),
+              height: MediaQuery.of(context).size.height * 0.10,
+              width: MediaQuery.of(context).size.height * 0.88,
+              // color: Colors.red,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xfff7c6bc)),
+
+              child: Text(
+                news.name,
+                textAlign: TextAlign.right,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              ),
+            ),
+            Container(
+               padding: EdgeInsets.symmetric(horizontal: 10),
+               margin: EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
+              // height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.height * 0.90,
+               decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xff7c6bc)),
+                          child: Html(
+                data: news.desc,
+              ),
+            ),
+          ],
+        ),
+        // child: Html(
+        //   data: news.desc,
+        // ),
+      ),
     );
-  }}
+  }
+}
