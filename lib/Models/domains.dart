@@ -1,4 +1,4 @@
- import 'package:twoo/Models/delivery.dart';
+
 
 class Domains{
    bool candelete;

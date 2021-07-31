@@ -24,7 +24,8 @@ dependencies:
   http: ^0.12.2
   flutter:
     sdk: flutter
-  flutter_html:  
+  flutter_html:
+  # dynamic_themes: ^1.0.0   
   # bottom_navy_bar: ^3.0.0
     
 

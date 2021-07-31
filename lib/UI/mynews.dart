@@ -25,6 +25,21 @@ class _Mynews extends State<Mynews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         leading: BackButton(
+     color: Colors.black
+   ), 
+        // centerTitle: false,
+        //   title: Container(
+        //     width: MediaQuery.of(context).size.width,
+        //     child: Text(
+        //       "kmkajsn",
+        //       style: TextStyle(
+        //           color: Colors.grey[700],
+        //           fontWeight: FontWeight.w700,
+        //           fontSize: 20),
+        //       textAlign: TextAlign.end,
+        //     ),
+        //   ),
         backgroundColor: Colors.white
       ),
       body: SingleChildScrollView(

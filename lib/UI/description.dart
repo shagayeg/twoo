@@ -19,7 +19,23 @@ class _Description extends State<Description> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white),
+      appBar: AppBar(
+         leading: BackButton(
+     color: Colors.black
+   ), 
+        // centerTitle: false,
+        //   title: Container(
+        //     width: MediaQuery.of(context).size.width,
+        //     child: Text(
+        //       "kmkajsn",
+        //       style: TextStyle(
+        //           color: Colors.grey[700],
+        //           fontWeight: FontWeight.w700,
+        //           fontSize: 20),
+        //       textAlign: TextAlign.end,
+        //     ),
+        //   ),
+        backgroundColor: Colors.white),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -36,6 +52,8 @@ class _Description extends State<Description> {
               child: Text(
                 pop.name,
                 textAlign: TextAlign.right,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
             ),
@@ -53,7 +71,7 @@ class _Description extends State<Description> {
                   ),
                   Text(
                     "توضیحات",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   )
                 ],
               ),
@@ -97,9 +115,10 @@ class _Description extends State<Description> {
                               fontSize: 15, fontWeight: FontWeight.w800),
                         ),
                         Text(pop.price.toString()),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.40,
-                        ),
+                        Spacer(),
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 0.40,
+                        // ),
                         Text(
                           "قیمت دوره",
                           style: TextStyle(
@@ -122,9 +141,10 @@ class _Description extends State<Description> {
                           textDirection: TextDirection.rtl,
                           style: TextStyle(fontSize: 15),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.40,
-                        ),
+                        Spacer(),
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 0.40,
+                        // ),
                         Text(
                           "تاریخ انتشار",
                           style: TextStyle(

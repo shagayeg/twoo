@@ -45,22 +45,36 @@ class _Namecate extends State<Namecate> {
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
-              actions: [
-                Text(
+               leading: BackButton(
+     color: Colors.black
+   ), 
+              title: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
                   category.name,
                   style: TextStyle(
                       color: Colors.grey[700],
                       fontWeight: FontWeight.w700,
                       fontSize: 20),
+                  textAlign: TextAlign.end,
                 ),
-                Padding(padding: EdgeInsets.all(20)),
-              ],
+              ),
+              backgroundColor: Colors.white,
+              // actions: [
+              //   Text(
+              //     category.name,
+              //     style: TextStyle(
+              //         color: Colors.grey[700],
+              //         fontWeight: FontWeight.w700,
+              //         fontSize: 20),
+              //   ),
+              //   Padding(padding: EdgeInsets.all(20)),
+              // ],
             ),
             body: Container(
               height: MediaQuery.of(context).size.height * 0.90,
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 2,vertical: 20),
+              margin: EdgeInsets.symmetric(horizontal: 2, vertical: 20),
               //  color: Colors.purple,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
@@ -103,7 +117,7 @@ class _Namecate extends State<Namecate> {
                             ),
                             Container(
                               padding: EdgeInsets.only(top: 5),
-                              margin: EdgeInsets.symmetric(horizontal: 18),
+                              margin: EdgeInsets.symmetric(horizontal: 15),
                               height: MediaQuery.of(context).size.height * 0.09,
                               width: MediaQuery.of(context).size.width * 0.8,
                               //  color: Colors.red,
@@ -128,18 +142,18 @@ class _Namecate extends State<Namecate> {
                                 children: [
                                   Text(category.products[index].price
                                       .toString()),
-                                
+
                                   Text(
                                     "تومان",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w700),
                                   ),
-                                    SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.45,
-                                  ),
-                                   
+                                  Spacer(),
+                                  //   SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       0.45,
+                                  // ),
+
                                   Text(category.products[index].user.fullname),
+
                                   SizedBox(
                                     width: MediaQuery.of(context).size.width *
                                         0.04,
@@ -163,10 +177,11 @@ class _Namecate extends State<Namecate> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(category.products[index].user.call),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.50,
-                                  ),
+                                  Spacer(),
+                                  // SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       0.50,
+                                  // ),
                                   Icon(Icons.people_rounded),
                                 ],
                               ),

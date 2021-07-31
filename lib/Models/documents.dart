@@ -3,11 +3,9 @@ import 'dart:developer';
 
 import 'package:twoo/Models/filedoc.dart';
 import 'package:twoo/Models/image.dart';
-import 'package:twoo/Models/state.dart';
 
-import 'irankish.dart';
-import 'mellat.dart';
-import 'owner.dart';
+
+
 
 class Documents {
   String crestedat;
@@ -22,9 +20,8 @@ class Documents {
   bool published;
   String slug;
   List<Filedoc> filesdoc;
-  // List<Image> image;
   Image image; 
-  // Filedoc filedoc;
+  
    
 
   
@@ -65,13 +62,6 @@ class Documents {
           : data["files"]
               .map<Filedoc>((json) => Filedoc.filesdocparser(json))
               .toList(),
-      // image: data["image"] == null
-      //     ? []
-      //     : data["image"]
-      //         .map<Image>((json) => Image.imageparser(json))
-      //         .toList(),
-        
-        // filedoc: Filedoc.parser(data["filesdoc"]),
          image:Image.imageparser(data["image"]),
           
     );

@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:twoo/API/HomePageAPI.dart';
 import 'package:twoo/Models/author.dart';
 import 'package:twoo/Models/categoriesWithProducts.dart';
 import 'package:twoo/Models/documents.dart';
+import 'package:twoo/Models/homepage.dart';
 import 'package:twoo/Models/mainnews.dart';
 import 'package:twoo/Models/news.dart';
 import 'package:twoo/Models/product.dart';
@@ -15,9 +14,9 @@ import 'package:twoo/Models/sliders.dart';
 import 'package:twoo/Models/specialproducts.dart';
 import 'package:twoo/Models/store.dart';
 import 'package:twoo/Models/stores.dart';
-import 'package:twoo/UI/descprolatest.dart';
 import 'package:twoo/UI/description.dart';
 import 'package:twoo/UI/docgage.dart';
+import 'package:twoo/UI/lastproduct.dart';
 import 'package:twoo/UI/mainnewspage.dart';
 import 'package:twoo/UI/mynews.dart';
 import 'package:twoo/UI/namecate.dart';
@@ -40,8 +39,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _isReq = false;
   List<CategoriesWithProducts> data = new List();
-  // List<Product> productList = new List();
-
   List<Stores> storesList = new List();
   List<Documents> documentsList = new List();
   List<Store> data3 = new List();
@@ -103,7 +100,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white),
+      appBar: AppBar(
+          centerTitle: false,
+          title: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              "صفحه ی اصلی",
+              style: TextStyle(
+                  color: Colors.grey[700],
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20),
+              textAlign: TextAlign.end,
+            ),
+          ),
+          backgroundColor: Colors.white),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text("حالت شب"),
+              trailing: Switch(
+                value: false,
+                onChanged: (changeTheme) {
+                  setState(() {});
+                },
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         // currentIndex: 0,
         items: [
@@ -127,15 +152,6 @@ class _MyHomePageState extends State<MyHomePage> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  // Container(
-                  //   color: Colors.purple,
-                  //   margin: EdgeInsets.only(
-                  //     left: 2,
-                  //   ),
-                  //   height: MediaQuery.of(context).size.height * 0.10,
-                  //   width: MediaQuery.of(context).size.width * 0.99,
-                  // ),
-
                   // showing data
 
                   /////////////////////////////////////////////////////////////////////
@@ -199,8 +215,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: sliderList[0].imageid.length,
                       itemBuilder: (context, index) {
-                        // print("https://bab.ir/media/" +
-                        //     sliderList[index].imageid.toString() + " : image id");
                         return Container(
                             height: MediaQuery.of(context).size.height * 0.20,
                             width: MediaQuery.of(context).size.width * 0.99,
@@ -331,7 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.52,
+                    height: MediaQuery.of(context).size.height * 0.54,
                     width: MediaQuery.of(context).size.width * 0.99,
                     // color: Colors.pink[300],
                     child: ListView.builder(
@@ -350,10 +364,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                         )));
                           },
                           child: Container(
-                              height: MediaQuery.of(context).size.height * 0.30,
+                              height: MediaQuery.of(context).size.height * 0.40,
                               width: MediaQuery.of(context).size.width * 0.99,
                               // color: Colors.grey[200],
-                              margin: EdgeInsets.all(10),
+                              margin: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
                                   color: Color(0xfff7c6bc)),
@@ -379,7 +393,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
-                                                  0.25,
+                                                  0.28,
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -400,14 +414,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                             Container(
                                               padding: EdgeInsets.all(4),
-                                              // height: MediaQuery.of(context)
-                                              //         .size
-                                              //         .height *
-                                              //     0.05,
-                                              // width: MediaQuery.of(context)
-                                              //         .size
-                                              //         .width *
-                                              //     0.11,
                                               child: Text("%" +
                                                   productpopularList[index]
                                                       .discountamount
@@ -421,11 +427,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ],
                                         )),
                                     Container(
+                                      padding: EdgeInsets.all(5),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 20),
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.08,
+                                              0.10,
                                       width: MediaQuery.of(context).size.width *
                                           0.92,
                                       // color: Colors.red,
@@ -480,7 +487,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       color: Colors.grey[600],
                                     ),
                                     Container(
-                                      padding: EdgeInsets.only(top: 15),
+                                      padding: EdgeInsets.only(top: 10),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 20),
                                       height:
@@ -498,6 +505,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             style: TextStyle(
                                                 color: Colors.grey[700]),
                                           ),
+                                          Spacer(),
                                         ],
                                       ),
                                     )
@@ -584,18 +592,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     // color: Colors.red,
-                                    // child: Image.network(
-                                    //   "http://goftavard.ir/media/" +
-                                    //       newsList[index].image.name,
-                                    //   fit: BoxFit.fill,
-                                    // ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(right: 12),
+                                    margin: EdgeInsets.only(right: 12, top: 10),
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
                                     width: MediaQuery.of(context).size.width *
                                         0.90,
+                                    // color: Colors.red,
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -624,25 +628,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 15),
-
-                                        // child: Column(
-                                        //   children: [
-                                        //     Text(
-                                        //       newsList[index].name,
-                                        //       textAlign: TextAlign.right,
-                                        //       style: TextStyle(
-                                        //           fontWeight: FontWeight.w700,
-                                        //           fontSize: 15),
-                                        //     ),
-                                        //     SizedBox(
-                                        //       height: 20,
-                                        //     ),
-                                        //     Text(
-                                        //       newsList[index].subtitle,
-                                        //       textAlign: TextAlign.right,
-                                        //     )
-                                        //   ],
-                                        // ),
                                       )),
                                   Container(
                                     margin:
@@ -712,8 +697,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) => new Descprolatest(
-                                          pro: productlatestList[index],
+                                    builder: (context) => new Lastproduct(
+                                          prol: productlatestList[index],
                                         )));
                           },
                           child: Container(
@@ -756,18 +741,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                   // color: Colors.red,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(top: 8),
-                                  margin: EdgeInsets.symmetric(horizontal: 20),
+                                  padding: EdgeInsets.only(
+                                    top: 8,
+                                  ),
+                                  margin: EdgeInsets.symmetric(horizontal: 25),
                                   height:
-                                      MediaQuery.of(context).size.height * 0.09,
+                                      MediaQuery.of(context).size.height * 0.10,
                                   width:
-                                      MediaQuery.of(context).size.width * 0.92,
+                                      MediaQuery.of(context).size.width * 0.99,
                                   // color: Colors.red,
                                   child: Text(
                                     productlatestList[index].name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 16),
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.04),
                                     textAlign: TextAlign.right,
                                   ),
                                 ),
@@ -780,8 +769,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       MediaQuery.of(context).size.width * 0.92,
                                   // color: Colors.pink,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(productlatestList[index]
                                           .price
@@ -794,11 +782,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700),
                                       ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.35,
-                                      ),
+                                      Spacer(),
+                                      // SizedBox(
+                                      //   width:
+                                      //       MediaQuery.of(context).size.width *
+                                      //           0.35,
+                                      // ),
                                       Text(productlatestList[index]
                                           .user
                                           .fullname),
@@ -836,10 +825,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         SizedBox(
                                           width: 5,
                                         ),
-                                        // Icon(
-                                        //   Icons.access_time,
-                                        //   color: Colors.grey[600],
-                                        // ),
                                       ],
                                     ))
                               ],
@@ -849,130 +834,49 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
-                      margin: EdgeInsets.only(right: 15),
-                      padding: EdgeInsets.only(right: 15),
+                      margin: EdgeInsets.symmetric(horizontal: 18),
                       height: MediaQuery.of(context).size.height * 0.08,
                       width: MediaQuery.of(context).size.width * 0.99,
                       // color: Colors.red,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text("فروشگاه",
+                          Text("اسناد",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 16)),
+                                  fontWeight: FontWeight.w700, fontSize: 18)),
                         ],
                       )),
                   Container(
+                    margin: EdgeInsets.symmetric(horizontal: 15),
                     height: 2,
                     width: MediaQuery.of(context).size.width * 0.99,
                     color: Color(0xfff7c6bc),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
 
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    width: MediaQuery.of(context).size.width * 0.99,
-                    // color: Colors.amber,
-                    child: ListView.builder(
-                        reverse: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: storesList.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            splashColor: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Container(
-                                  // color: Colors.cyan,
-                                  margin: EdgeInsets.symmetric(horizontal: 40),
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xfff7c6bc),
-                                    borderRadius: BorderRadius.circular(80.0),
-                                  ),
-                                  child: Icon(
-                                    Icons.store_mall_directory_outlined,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    height: MediaQuery.of(context).size.height *
-                                        0.06,
-                                    // width: MediaQuery.of(context).size.width*0.40,
-                                    // color: Colors.yellow,
-                                    child: Text(
-                                      storesList[index].store.name,
-                                      textAlign: TextAlign.right,
-                                    )),
-                              ],
-                            ),
-                          );
-                        }),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.08,
-                    width: MediaQuery.of(context).size.width * 0.99,
-                    // color: Colors.red,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                            top: 20,
-                            left: 300,
-                            child: Text(" اسناد",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18))),
-                        Positioned(
-                          top: 60,
-                          left: 15,
-                          right: 15,
-                          child: Container(
-                            height: 2,
-                            width: MediaQuery.of(context).size.width * 0.99,
-                            color: Color(0xfff7c6bc),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                   SizedBox(
                     height: 40,
                   ),
                   Container(
                     height: MediaQuery.of(context).size.height * 0.32,
-                    width: 250,
+                    width: MediaQuery.of(context).size.width * 0.65,
                     // color: Colors.red[300],
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: documentsList.length,
                       itemBuilder: (context, index) {
                         return InkWell(
-                          onTap: () {
-                            // setState(() {});
-                            // Navigator.push(
-                            //   context,
-                            //   new MaterialPageRoute(
-                            //     builder: (context) => new Docpage(
-                            //       // sto: storesList[index],
-                            //
-                            //     ),
-                            //   ),
-                          },
+                          onTap: () {},
                           child: Column(
                             children: [
-                              Card(
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.32,
+                                width: MediaQuery.of(context).size.width * 0.65,
                                 child: Image.network(
                                   "http://goftavard.ir/media/" +
                                       documentsList[index].image.name,
@@ -1022,17 +926,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         "http://goftavard.ir/media/" + mainNew.image.name,
                         fit: BoxFit.fill,
                       )),
-                  // Container(
-                  //     decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(16),
-                  //           color: Color(0xfff7c6bc)),
-                  //   padding: EdgeInsets.symmetric(horizontal: 110,vertical: 10),
-                  //     margin: EdgeInsets.only(top: 20,),
-                  //    height: MediaQuery.of(context).size.height * 0.06,
-                  // width: MediaQuery.of(context).size.width * 0.90,
-                  // // color: Colors.red,
-                  // child: Text("مشاهده توضیحات",textAlign: TextAlign.right,style: TextStyle(fontSize:15,fontWeight: FontWeight.w700,),),
-                  // ),
                   SizedBox(
                     height: 80,
                   ),
@@ -1067,7 +960,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       // color: Color(0xffff7c6bc),
                       color: Colors.pink[100],
                       child: ListView.builder(
-                          reverse: true,
+                          // reverse: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: specialproductsList.length,
                           itemBuilder: (context, index) {
@@ -1082,138 +975,131 @@ class _MyHomePageState extends State<MyHomePage> {
                                             )));
                               },
                               child: Row(children: [
-                                Card(
-                                    // color: Color(0xfff7c6bc) ,
-                                    margin: EdgeInsets.only(
-                                        bottom: 14, top: 15, left: 10),
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.60,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.55,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
+                                Container(
+                                  margin: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.60,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.55,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
                                                 0.20,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
+                                        width:
+                                            MediaQuery.of(context).size.width *
                                                 0.50,
-                                            margin: EdgeInsetsDirectional.only(
-                                                top: 5),
-                                            // color: Colors.red,
-                                            child: Image.network(
-                                              "http://bab.ir" +
-                                                  productpopularList[index]
-                                                      .firstimage,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                          // SizedBox(height: 10,),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                left: 3, right: 5, top: 40),
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.30,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.55,
-                                            // color: Colors.pink,
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  specialproductsList[index]
-                                                      .name,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w800),
-                                                  textAlign: TextAlign.right,
-                                                ),
-                                                SizedBox(
-                                                  height: 120,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    Text(
-                                                      "تومان",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w800),
-                                                    ),
-                                                    Text(specialproductsList[
-                                                            index]
-                                                        .price
-                                                        .toString()),
-                                                    SizedBox(
-                                                      width: 80,
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: 8, top: 5),
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              0.03,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.11,
-                                                      child: Text("%" +
-                                                          specialproductsList[
-                                                                  index]
-                                                              .discountamount
-                                                              .toString()),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.red[400],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50.0),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 15),
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.03,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.52,
-                                                  // color: Colors.red,
-                                                  child: Text(
-                                                    specialproductsList[index]
-                                                        .createdAtMoment,
-                                                    textDirection:
-                                                        TextDirection.rtl,
-                                                    style: TextStyle(
-                                                        color:
-                                                            Colors.grey[500]),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                        margin:
+                                            EdgeInsetsDirectional.only(top: 5),
+                                        // color: Colors.red,
+                                        child: Image.network(
+                                          "http://bab.ir" +
+                                              productpopularList[index]
+                                                  .firstimage,
+                                          fit: BoxFit.fill,
+                                        ),
                                       ),
-                                    )),
+                                      // Spacer(),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.08),
+                                      Container(
+                                        margin:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.08,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.55,
+                                        // color: Colors.pink,
+                                        child: Text(
+                                          specialproductsList[index].name,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800),
+                                          textAlign: TextAlign.right,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.08),
+                                      Container(
+                                        margin:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.08,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.55,
+                                        // color: Colors.yellow,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              "تومان",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w800),
+                                            ),
+                                            Text(specialproductsList[index]
+                                                .price
+                                                .toString()),
+                                            Spacer(),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 5),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.11,
+                                              child: Text("%" +
+                                                  specialproductsList[index]
+                                                      .discountamount
+                                                      .toString()),
+                                              decoration: BoxDecoration(
+                                                color: Colors.red[400],
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        // margin:
+                                        //     EdgeInsets.only(top: 15),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.03,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.52,
+                                        // color: Colors.red,
+                                        child: Text(
+                                          specialproductsList[index]
+                                              .createdAtMoment,
+                                          textDirection: TextDirection.rtl,
+                                          style: TextStyle(
+                                              color: Colors.grey[500]),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                                 Container(
                                   height:
                                       MediaQuery.of(context).size.height * 0.6,

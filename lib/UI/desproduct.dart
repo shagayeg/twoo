@@ -20,13 +20,31 @@ class _Desproduct extends State<Desproduct> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white),
+      appBar: AppBar(
+         leading: BackButton(
+     color: Colors.black
+   ), 
+        // centerTitle: false,
+        //   title: Container(
+        //     width: MediaQuery.of(context).size.width,
+        //     child: Text(
+        //       "kmkajsn",
+        //       style: TextStyle(
+        //           color: Colors.grey[700],
+        //           fontWeight: FontWeight.w700,
+        //           fontSize: 20),
+        //       textAlign: TextAlign.end,
+        //     ),
+        //   ),
+        backgroundColor: Colors.white),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 10, left: 8, right: 8),
-              padding: EdgeInsets.only(left: 15, right: 10, top: 10),
+              margin: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              // margin: EdgeInsets.only(top: 10, left: 8, right: 8),
+              // padding: EdgeInsets.only(left: 15, right: 10, top: 10),
               height: MediaQuery.of(context).size.height * 0.10,
               width: MediaQuery.of(context).size.height * 0.88,
               // color: Colors.red,
@@ -37,7 +55,10 @@ class _Desproduct extends State<Desproduct> {
               child: Text(
                 product.name,
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              
+                maxLines: 2,
+                overflow: TextOverflow.visible,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
             Container(
@@ -80,7 +101,8 @@ class _Desproduct extends State<Desproduct> {
               // color: Colors.pink,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0xfff7c6bc)),
+                  color: Color(0xfff7c6bc)
+                  ),
               child: Column(
                 children: [
                   Container(
@@ -98,9 +120,10 @@ class _Desproduct extends State<Desproduct> {
                               fontSize: 15, fontWeight: FontWeight.w800),
                         ),
                         Text(product.price.toString()),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.45,
-                        ),
+                        Spacer(),
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 0.45,
+                        // ),
                         Text(
                           "قیمت دوره",
                           style: TextStyle(
@@ -123,9 +146,10 @@ class _Desproduct extends State<Desproduct> {
                           textDirection: TextDirection.rtl,
                           style: TextStyle(fontSize: 15),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.45,
-                        ),
+                        Spacer(),
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 0.45,
+                        // ),
                         Text(
                           "تاریخ انتشار",
                           style: TextStyle(
@@ -153,12 +177,16 @@ class _Desproduct extends State<Desproduct> {
                     },
                     // child: Text('Show SnackBar'),
                   ),
+                  Spacer(),
                 ],
               ),
+              
             ),
           ],
         ),
+      
       ),
+      
       // child: Html(data:
       // pop.description
       // ),

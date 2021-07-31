@@ -1,46 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:twoo/Models/productlatest.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:twoo/Models/productlatest.dart';
 
-// class SnackBordemo extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//    return Center(
-//      child: new RaisedButton(onPressed:(){
-//        final SnackBar snackBar= new SnackBar(content:
-//        new Text("snxjdns"),
-//        action:  new SnackBarAction(label:"undo",
-//         onPressed: (){}),
-//        );
-//        Scaffold.of(context).showSnackBar(snackBar);
-//      }),
-//    );
+class Lastproduct extends StatefulWidget {
+  final Productlatest prol;
 
-//   }
-
-// }
-
-class Descprolatest extends StatefulWidget {
-  final Productlatest pro;
-
-  const Descprolatest({Key key, this.pro}) : super(key: key);
+  const Lastproduct({Key key, this.prol}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _Descprolatest(pro);
+    return _Lastproduct(prol);
   }
 }
 
-class _Descprolatest extends State<Descprolatest> {
-  final Productlatest pro;
+class _Lastproduct extends State<Lastproduct> {
+  final Productlatest prol;
 
-  _Descprolatest(this.pro);
+  _Lastproduct(this.prol);
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
+        appBar: AppBar(
+           leading: BackButton(
+     color: Colors.black
+   ), 
+        // centerTitle: false,
+        //   title: Container(
+        //     width: MediaQuery.of(context).size.width,
+        //     child: Text(
+        //       "kmkajsn",
+        //       style: TextStyle(
+        //           color: Colors.grey[700],
+        //           fontWeight: FontWeight.w700,
+        //           fontSize: 20),
+        //       textAlign: TextAlign.end,
+        //     ),
+        //   ),
+          backgroundColor: Colors.white),
+        body: SingleChildScrollView(
+          child: Column(children: [
             Container(
               margin: EdgeInsets.only(top: 10, left: 8, right: 8),
               padding: EdgeInsets.only(left: 15, right: 10, top: 10),
@@ -52,7 +49,7 @@ class _Descprolatest extends State<Descprolatest> {
                   color: Color(0xfff7c6bc)),
 
               child: Text(
-                pro.name,
+                prol.name,
                 textAlign: TextAlign.right,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
@@ -89,19 +86,18 @@ class _Descprolatest extends State<Descprolatest> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Color(0xff7c6bc)),
-                child: Html(data: pro.description)),
+                child: Html(data: prol.description)),
             Container(
-              margin: EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
-              height: MediaQuery.of(context).size.height * 0.35,
-              width: MediaQuery.of(context).size.height * 0.90,
-              // color: Colors.pink,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color(0xfff7c6bc)),
-              child: Column(
-                children: [
+                margin: EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
+                height: MediaQuery.of(context).size.height * 0.30,
+                width: MediaQuery.of(context).size.height * 0.90,
+                // color: Colors.pink,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color(0xfff7c6bc)),
+                child: Column(children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: EdgeInsets.symmetric(horizontal: 18),
                     // padding: EdgeInsets.only(left: 10),
                     height: MediaQuery.of(context).size.height * 0.08,
                     width: MediaQuery.of(context).size.height * 0.90,
@@ -114,8 +110,11 @@ class _Descprolatest extends State<Descprolatest> {
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w800),
                         ),
-                        Text(pro.price.toString()),
+                        Text(prol.price.toString()),
                         Spacer(),
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 0.40,
+                        // ),
                         Text(
                           "قیمت دوره",
                           style: TextStyle(
@@ -134,7 +133,7 @@ class _Descprolatest extends State<Descprolatest> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          pro.createdAtMoment,
+                          prol.createdAtMoment,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(fontSize: 15),
                         ),
@@ -165,16 +164,9 @@ class _Descprolatest extends State<Descprolatest> {
                       style: TextStyle(fontSize: 15),
                     ),
                     onPressed: () {},
-                  ),
-                  Spacer()
-                ],
-              ),
-            ),
-            Spacer(),
-          ],
-        ),
-        
-      ),
-    );
+                  )
+                ]))
+          ]),
+        ));
   }
 }

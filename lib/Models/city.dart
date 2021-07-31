@@ -3,14 +3,14 @@ class City {
   String name;
   int latitude;
   int longitude;
-  // List<Province> province;
+  
 
   City({
     this.id,
     this.name,
     this.latitude,
     this.longitude,
-    // this.province,
+    
   });
   factory City.parser(Map<String, dynamic> data) {
     return City(
@@ -18,11 +18,7 @@ class City {
       name: data["name"],
       latitude: data["latitude"],
       longitude: data["longitude"],
-      // province: data["province"] == null
-      //     ? []
-      //     : data["province"]
-      //         .map<Province>((json) => Province.parser(data))
-      //         .toList(),
+      
     );
   }
 }
